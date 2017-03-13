@@ -511,6 +511,34 @@ class HttpRequestService extends \CHttpRequest
 	}
 
 	/**
+	 * Returns a POST parameter. If the validateUnsafeRequestParams config setting has been set to `true`,
+	 * and this is a front-end request, then the POST parameter’s value will be validated with
+	 * {@link SecurityService::validateData()} before being returned, ensuring that the value had not
+	 * been tampered with by the user.
+	 *
+	 * @param string $name The dot-delimited name of the POST param to be fetched.
+	 *
+	 * @return mixed The value of the corresponding POST param
+	 * @thorws HttpException if the param did not validate
+	 */
+	public function getValidatedPost($name)
+	{
+		$value = $this->getPost($name);
+
+		if ($value !== null && $this->isSiteRequest() && craft()->config->get('validateUnsafeRequestParams'))
+		{
+			$value = craft()->security->validateData($value);
+
+			if ($value === false)
+			{
+				throw new HttpException(400, Craft::t('POST param “{name}” was invalid.', array('name' => $name)));
+			}
+		}
+
+		return $value;
+	}
+
+	/**
 	 * Returns a parameter from either the query string or POST data.
 	 *
 	 * This method will first search for the given paramater in the query string, calling {@link getQuery()} internally,
@@ -825,11 +853,6 @@ class HttpRequestService extends \CHttpRequest
 			HeaderHelper::setHeader(array('Vary' => 'Accept-Encoding'));
 		}
 
-		if (!ob_get_length())
-		{
-			HeaderHelper::setLength($length);
-		}
-
 		$content = mb_substr($content, $contentStart, $length, '8bit');
 
 		if ($terminate)
@@ -910,7 +933,7 @@ class HttpRequestService extends \CHttpRequest
 
 	// Rename getIsX() => isX() functions for consistency
 	//  - We realize that these methods could be called as if they're properties (using CComponent's magic getter) but
-    //    we're trying to resist the temptation of magic methods for the sake of code obviousness.
+	//    we're trying to resist the temptation of magic methods for the sake of code obviousness.
 
 	/**
 	 * Alias of {@link getIsSecureConnection()}.

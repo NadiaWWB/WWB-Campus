@@ -6,19 +6,20 @@
 			init: function()
 			{
 				var button = this.button.addFirst('html', 'HTML');
+				this.button.setIcon(button, '<i class="re-icon-html"></i>');
 				this.button.addCallback(button, this.source.toggle);
 
 				var style = {
 					'width': '100%',
 					'margin': '0',
-					'background': '#111',
+					'background': '#1d1d1d',
 					'box-sizing': 'border-box',
-					'color': 'rgba(255, 255, 255, .8)',
-					'font-size': '14px',
+					'color': '#ccc',
+					'font-size': '15px',
 					'outline': 'none',
-					'padding': '16px',
-					'line-height': '22px',
-					'font-family': 'Menlo, Monaco, Consolas, "Courier New", monospace'
+					'padding': '20px',
+					'line-height': '24px',
+					'font-family': 'Consolas, Menlo, Monaco, "Courier New", monospace'
 				};
 
 				this.source.$textarea = $('<textarea />');
@@ -120,7 +121,8 @@
 				this.button.enableAll();
 				this.core.editor().show().focus();
 				this.selection.restore();
-				//this.code.sync();
+
+                this.core.callback('visual');
 			},
 			show: function()
 			{
@@ -130,8 +132,8 @@
 				var height = this.core.editor().innerHeight();
 				var code = this.code.get();
 
-				code = code.replace(/\n\n\n/g, "\n");
-				code = code.replace(/\n\n/g, "\n");
+                // callback
+                code = this.core.callback('source', code);
 
 				this.core.editor().hide();
 				this.button.disableAll('html');
