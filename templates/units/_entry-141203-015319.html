@@ -1,0 +1,126 @@
+{% set authors = entry.contributorAuthor %}
+{% extends "_layout" %}
+
+{% block content %}
+
+
+{% include 'global/_hero-static-image.html' %}
+
+<div id="start-of-content" class="content">
+	<div class="layout-2column">
+		<article class="hentry">
+			<header>
+				<h1>
+					{{ entry.title }}
+				</h1>
+
+				{% if authors | length %}
+				<h5>
+                 by {% for author in authors %}
+                 {% if loop.last and not loop.first %} and {% endif %}{{ author.title }}{% if not loop.last %}, {% endif %}
+                 {% endfor %}
+                 </h5>
+                 {% endif %}
+
+
+			</header>
+				{{ entry.introduction }}
+
+
+{% if entry.contributorAuthor  | length %}
+          <hr />
+            <h4>About the Author</h4>
+            <div class="metadata">
+              {% for author in authors %}
+                <h5>{{author.title}}</h5>
+                {% for block in author.images %}
+                  {% if block.type == "image" %}
+                    {% set image = block.image.first() %}
+                    {% if image %}
+                    <img src="{{ image.url }}" style="max-width:100%;float:left;margin:6px 12px 4px 0;">
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              {{author.body}}
+              {% for block in author.images %}
+                {% if block.captionCredit  %}
+                  <div class="caption" style="margin-bottom:10px;">image: {{ block.captionCredit }}</div>
+                {% endif %}
+              {% endfor %}
+                <br />
+              {% endfor %}
+
+            </div>
+          </li>
+        {% endif %}
+
+
+
+
+
+		</article>
+
+      <h5 style="text-align:right;"><strong><a href="/find/">Search for more literature &raquo;</a></strong></h5>
+      <br />
+		<aside>
+
+
+
+		<h3>Themes</h3>
+		{% for block in entry.themesAndArticles %}
+			{% set categories = block.theme %}
+			{% if categories | length %}
+				{% for cat in categories %}
+					{% set articles = block.articlesInThisTheme %}
+					{% set images = block.themeimage %}
+
+						{% if images|length %}
+
+							{% for image in images %}
+              <h6 style="text-align:left;font-weight:bold;">{{ cat.title }}</h6>
+							<div style="background-color:#FFF;height:250px;width:100%;margin:0 0 3em 0;">
+
+								<div class="image-box" style="background-color:#000;position:relative;float:left;margin:0 2em 3em 0;height:250px;width:220px;background-image:url({{ image.getUrl() }});repeat:no-repeat;background-size:cover;border-radius:4px;">
+
+										{# <div class="heading" style="border-radius:0 0 4px 4px;width:100%;position:absolute;bottom:0;left:0;padding:.5em;background-color:rgba(0,0,0,0.5);color:white;">
+											<h6>{{ cat.title }}</h6>
+										</div>
+ #}
+								</div>
+
+								<ul style="padding:.75em;">
+							{% for article in articles %}
+								<li style="margin-bottom:.75em;"> <a href="{{article.url}}"><strong>{{ article.title }}</strong></a> </li>
+							{% endfor %}
+						</ul>
+
+
+						</div>
+							{% endfor %}
+
+								{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+					{% endfor %}
+
+
+
+
+
+				{% endif %}
+			{% endfor %}
+		</aside>
+	</div>
+</section>
+{% endblock %}

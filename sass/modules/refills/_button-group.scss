@@ -1,0 +1,74 @@
+.button-group {
+  $button-group-background: $base-body-color;
+  $button-group-color: lighten($base-font-color, 30);
+  $button-group-border-highlight: lighten($button-group-background, 15);
+  $button-group-active: $base-accent-color;
+
+    font-family: $sans-serif; //BP
+
+
+  button {
+    @include button(pill, $button-group-background);
+    font-weight: 400;
+    color: $button-group-color;
+    font-size: $base-font-size;
+    outline: none;
+    width: 100%;
+    //display: block;
+    border-top-width: 0;
+    margin-bottom: .5em;
+    clear: both;
+    font-size: 90%;
+    padding: .5em .75em;
+
+    &.active {
+      @include button(simple, $button-group-active);
+      font-weight: 400;
+      font-size: $base-font-size;
+    }
+
+    &.cycle-pager-active {
+      //@include button(pill, $button-group-active);
+      font-weight: 800;
+      font-size: $base-font-size;
+      border-color: $button-group-active;
+    }
+
+    // &:first-child {
+    //   @include border-bottom-radius(0);
+    //   border-top-width: 1px;
+    // }
+
+    // &:not(:first-child):not(:last-child) {
+    //   border-radius: 0;
+    // }
+
+    // &:last-child {
+    //   @include border-top-radius(0);
+    // }
+
+    @include media($medium-screen) {
+      width: auto;
+      //float: left;
+      border-top-width: 1px;
+
+      // &:first-child {
+      //   border-top-right-radius: 0;
+      //   border-bottom-left-radius: 3px;
+      // }
+
+      // &:not(:first-child):not(:last-child) {
+      //   border-left: 1px solid $button-group-border-highlight;
+      //   border-radius: 0;
+      // }
+
+      // &:last-child {
+      //   border-left: 1px solid $button-group-border-highlight;
+      //   border-bottom-left-radius: 0;
+      // }
+    }
+  }
+}
+.cycle-pager-active {
+  background-color: red;
+}

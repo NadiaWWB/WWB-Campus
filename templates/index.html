@@ -1,0 +1,68 @@
+{% extends "_layout" %}
+{% block content %}
+{% set news = craft.entries.section('news').limit(1).find() %}
+{% set notices = craft.entries.section('notices').limit(1).order('RAND()').find() %}
+{% set units = craft.entries.section('units').order('postDate desc').find() %}
+{% set newArticles = craft.entries.section('article').order('postDate desc').limit(1).find() %}
+{% set themes = craft.entries.section('unitThemes').limit(6) %}
+
+{% include 'global/_hero-slideshow.html' %}
+
+<div id="start-of-content" class="content">
+
+
+
+<blockquote class="quote quote-presentational" style="margin-bottom:2em;">{{ entry.introduction }}</blockquote>
+
+<div class="row">
+	<div class="column-primary">
+		<h2>Featured Themes</h2>
+		{% include 'global/_themes.html' %}
+	</div>
+<div class="column">
+	<div style="margin:.75em auto;">
+		<a href="/find/"><button class="button-floating">Find Literature</button></a>
+		<a href="educators/"><button class="button-floating">For Educators</button></a>
+	</div>
+	<aside style="margin-top:3.25em;position:relative">
+		{% for entry in notices %}
+			<h4>{{ entry.title }}
+				{% for relatedArticle in entry.relatedPiece %}
+          <em>
+           	<a href="{{ relatedArticle.url}}">{{ relatedArticle.title }}</a>
+          </em>
+        {% endfor %}
+			</h4>
+			{% if entry.introduction %}
+				<div class="fit" style="max-width:96%;margin:auto;overflow: hidden;">{{ entry.introduction }}</div>
+				{% else %}
+				{% for relatedArticle in entry.relatedPiece %}
+					{% if relatedArticle.pullQuote %}
+            <blockquote class="small">{{ relatedArticle.pullQuote }}</blockquote>
+        	{% endif %}
+        		{% endfor %}
+			{% endif %}
+	{% endfor %}
+</aside>
+	{# <aside style="margin-top:3.25em;">
+		<h2>For Educators</h2> #}
+			{# <ul>
+				{% for entry in news %}
+					<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
+				{% endfor %}
+			</ul> #}
+
+			{# <a href="/read-by-country-or-theme/"><button>Find Articles</button></a>
+			<a href="educators/"><button>Find Teaching Ideas</button></a>
+	</aside> #}
+	<aside style="margin-top:3.25em;">
+		<h2>Latest Update</h2>
+		{% for entry in news %}
+			<h4><a href="{{ entry.url }}">{{ entry.title }}</a></h4>
+		{% endfor %}
+	</aside>
+</div>
+</div>
+<hr style="width:100%;clear:both;margin: 25em 0;border-top: none;" />
+</section>
+{% endblock %}

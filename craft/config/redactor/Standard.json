@@ -1,0 +1,10 @@
+{
+	buttons: ['html','formatting','bold','italic','unorderedlist','orderedlist','link','image','video'],
+	plugins: ['fullscreen', 'video'],
+	toolbarFixedBox: true,
+  toolbarFixedBox: true,
+  cleanOnPaste: false,
+  cleanSpaces: false,
+  paragraphize: false,
+  replaceDivs: false
+}

@@ -1,0 +1,51 @@
+{#
+.push and .bg are utility classes we can use to
+stick our footer at the bottom of the page and
+display a full width background image, respectively
+#}
+
+{# {% if page.background_image %}
+	<img src="{{siteUrl}}/assets/img/{{page.background_image}}" class="bg">
+{% endif %} #}
+<!-- /footer -->
+<!--<div class="wrapper-for-content-outside-of-footer">
+   Uncomment this whole section for a sticky footer. The content of the page should be inside of this .wrapper-for-content-outside-of-footer
+  <div class="push"></div>
+</div>-->
+<!-- Temporary -->
+       <div class="ribbon-wrapper-green no-print"><div class="ribbon-green">Beta</div></div>
+<footer class="footer-2" id="content-info">
+  <ul>
+    <li class="nav-item">
+      <a href="/">Home</a>
+    </li>
+    <li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'about' %} active{% endif %}{% endif %}">
+      <a href="/about/">About</a>
+    </li>
+    <li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'find' %} active{% endif %}{% endif %}">
+      <a href="/find/">Find Literature</a>
+    </li>
+    <li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'educators' %} active{% endif %}{% endif %}">
+      <a href="/educators/">For Educators</a>
+    </li>
+    <li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'news' %} active{% endif %}{% endif %}">
+      <a href="/news/">Blog</a>
+    </li>
+    <li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'contact' %} active{% endif %}{% endif %}">
+      <a href="/contact/">Contact</a>
+    </li>
+  </ul>
+  <div class="footer-secondary-links">
+    <ul>
+      <li class="source-org vcarfd copyright">
+        <a href="{{siteUrl}}">&copy; <span class="org fn">{{siteName}}</span></a>
+      </li>
+        {% if bannerImageCredit | length %}
+          <li><a>{{ bannerImageCredit.heading }}</a></li>
+        {% endif %}
+      </ul>
+      {# <ul class="footer-social">
+        {% include 'global/_social-links.html' %}
+      </ul> #}
+  </div>
+</footer>

@@ -1,0 +1,109 @@
+.stuck, .sticky {
+  @include media($large-screen) {
+  position: fixed;
+  top:0;
+  width: 100%;
+  img {
+    max-height: 1.6em;
+    @include animation(scale 1.0s ease-in, slide 2.0s ease);
+  }
+}
+}
+
+.home-slideshow {
+  min-height: 322px;
+  // $hero-image: '/assets/img/7537906870_cb72a4229e_o.jpg';
+  // background: url($hero-image);
+  // background-repeat: no-repeat;
+  // background-position: center center;
+}
+.hero {
+  @include animation(scale 3.0s ease-in, slide 2.0s ease);
+  //$hero-background-top: darken($base-accent-color, 10);
+  //$hero-background-top: desaturate(darken($base-accent-color, 30), 50);
+  //$hero-background-bottom: adjust-hue($hero-background-top, -10);
+  $hero-background-top: desaturate(darken($base-accent-color, 40), 50);
+  $hero-background-bottom: adjust-hue($hero-background-top, -10);
+  $hero-color: black;//white;
+  $gradient-angle: 10deg;
+  //$hero-image: 'https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png';
+  //$hero-image: '/assets/img/globe-desaturated-opacity44.png';
+  $hero-image: '/assets/img/7537906870_cb72a4229e_o.jpg';
+  //$hero-image: '/assets/img/map.png';
+  
+  background:url($hero-image);
+  background-repeat: no-repeat;
+  background-position: 10%;
+  //background-size: cover;
+  padding-bottom: 4em;
+  min-height: 322px;
+  //max-height: 300px;
+  color: $hero-color;
+  .hero-logo img {
+    height: 3em;
+    margin-bottom: 2.5em;
+  }
+  .hero-inner {
+    @include outer-container;
+    @include clearfix;
+    padding: 3em 2em 1.5em 2em;
+    margin: auto;
+    text-align: center;
+    color: $hero-color;
+
+    button {
+      @include button(simple, $base-body-color);
+      font-size: $base-font-size;
+      outline: none;
+    }
+
+
+blockquote  {
+  color: $hero-color;
+}
+
+    .hero-copy {
+      text-align:center;
+      font-weight: bold;
+      h1 {
+        font-size: 1.6em;
+        margin-bottom: .5em;
+        @include media($large-screen) {
+          font-size: 2em;
+        }
+      }
+
+      p {
+        //font-family: $serif;
+        font-family: $header-font-family;
+        margin: auto;
+        margin-bottom: 1em;
+        font-weight: 200;
+        line-height: 1.4em;
+
+        @include media($large-screen) {
+          font-size: 1.1em;
+          max-width: 50%;
+        }
+      }
+    }
+  }
+}
+
+.hero-pullquote {
+  text-align: left;
+  background-color: rgba(2,21,31,0.5);
+  color: white;
+  padding:.75em 1em .25em 1em;
+  border-radius: 2px;
+
+  float:right;
+  margin-top:1%;
+  @include media($large-screen) {
+    max-width:28%;
+  }
+
+  a{
+    color: white;
+  }
+}

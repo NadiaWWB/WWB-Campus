@@ -1,0 +1,29 @@
+{# DEPRECATING #}
+{% if entry is defined %}
+	{% if entry.section.handle == 'article' %}
+		<ul>
+		{% for relatedTheme in relatedThemes %}
+		{% set ThemeUnit = relatedTheme.unitCountry.first %}
+			<li>Unit:  <a href="/{{ relatedTheme.uri }}">Mexico{{ ThemeUnit.title }}</a> / Theme: Leaving Home<a href="/{{ relatedTheme.uri }}">{{ relatedTheme.title }}</a>{% if not loop.last %}, {% endif %}</li>
+		{% endfor %}
+			<li>Unit:  <a href="/">Mexico</a> / Theme: Leaving Home
+				{# TODO: Fix the reverse relationship #}
+			</li>
+		</ul>
+	{% else %}
+		<ul>
+			<li>Latest: </li>
+			{% for items in craft.entries.section('news').limit(1).find() %}
+				<li><a href="{{ items.url }}">{{ items.title }}</a></li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% elseif entry is not defined %}
+	<ul>
+		<li>Latest: </li>
+		{% for items in craft.entries.section('news').limit(1).find() %}
+			<li><a href="{{ items.url }}">{{ items.title }}</a></li>
+		{% endfor %}
+	</ul>
+{% endif %}
+

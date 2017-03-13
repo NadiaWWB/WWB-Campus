@@ -1,0 +1,29 @@
+  {% cache for 6 hours %}
+  {% for entry in  articles %}
+    {% set relatedThemes = entry.theme.first() %}
+    {% set genre = entry.genre.first %}
+    {% set authors = entry.contributorAuthor %}
+
+    {% set units = craft.entries.section('unitThemes').relatedTo(entry).first() %}
+
+    <li class="item {{ genre.slug }} {{ relatedThemes.slug }} {{ units.unitCountry.first().slug}}">
+      <a href="{{ entry.url }}">
+        <h6>{% if genre | length %}{{ genre.title }}{% endif %}{% if units | length %} from {{ units.unitCountry.first().title }}{% endif %}</h6>
+        <div>
+          {% if relatedThemes %}
+            <h5><strong>{{ relatedThemes }}</strong></h5>
+          {% endif %}
+          <h2>{{ entry.title }}</h2>
+          <small>
+            {% include 'global/_authors-list.html' %}
+          </small>
+        </div>
+        <div class="quote">
+          {{ entry.pullQuote }}
+        </div>
+      </a>
+    </li>
+  {% endfor %}
+  {% endcache %}
+
+

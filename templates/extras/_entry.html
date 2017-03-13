@@ -1,0 +1,57 @@
+
+{% extends "_layout" %}
+
+{% block content %}
+{% set intro = entry.introduction %}
+{% include 'global/_hero-static-image.html' %}
+
+<div id="start-of-content" class="content">
+	<div class="layout-2column-spread">
+		<aside>
+			<h5>Latest News</h5>
+			<ul>
+				{% for entry in craft.entries.section('news').limit(10).find() %}
+					<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
+
+					<br />
+				{% endfor %}
+			</ul>
+		</aside>
+		<div class="posts">
+				<article class="hentry boxed">
+					<h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
+					{# <p>Posted on {{ entry.postDate.format('F d, Y') }}</p> #}
+
+          {% if entry.introduction %} {{ entry.introduction }} {% endif %}
+					{{ entry.body }}
+
+					{% if entry.contributorAuthor  | length %}
+          <hr />
+            <h4>About the Author</h4>
+            <div class="metadata">
+              {% for author in authors %}
+                <h5>{{author.title}}</h5>
+                {% for block in author.images %}
+                  {% if block.type == "image" %}
+                    {% set image = block.image.first() %}
+                    {% if image %}
+                    <img src="{{ image.url }}" style="max-width:100%;float:left;margin:6px 12px 4px 0;">
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              {{ author.body }}
+              {% for block in author.images %}
+                {% if block.captionCredit  %}
+                  <div class="caption" style="margin-bottom:10px;">image: {{ block.captionCredit }}</div>
+                {% endif %}
+              {% endfor %}
+                <br />
+              {% endfor %}
+            </div>
+          </li>
+        {% endif %}
+				</article>
+		</div>
+	</div>
+</section>
+{% endblock %}

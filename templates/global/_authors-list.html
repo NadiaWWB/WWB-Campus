@@ -1,0 +1,10 @@
+{% if authors | length %}
+ by
+ {% for author in authors %}
+   {% if authors | length == 2 %}
+        {% if loop.last and not loop.first %} and {% endif %}{{author.title}}
+          {% else %}
+            {% if loop.last and not loop.first %} and {% endif %}{{author.title}}{% if not loop.last %}, {% endif %}
+      {% endif %}
+   {% endfor %}
+   {% endif %}

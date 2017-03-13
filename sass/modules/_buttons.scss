@@ -1,0 +1,21 @@
+
+
+button.pill, button.small {padding: .45em .65em .45em .75em; font-size:90%;}
+
+.print-only {
+  display: none;
+}
+
+
+
+.button-group button.is-checked, .button-group button.is-checked:active:not(:disabled), .button-group button.is-checked:focus:not(:disabled) {
+  background: $wwb-green;
+  background-image: -webkit-linear-gradient($wwb-green,$wwb-green);
+  color: white;
+  border: 1px solid $wwb-green;
+  text-shadow: none;
+  box-shadow:none;
+}
+.button-floating {
+  margin-bottom:.25em;
+}

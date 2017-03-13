@@ -1,0 +1,16 @@
+{% set intro = entry.introduction %}
+{% extends "_layout" %}
+
+{% block content %}
+
+{% include 'global/_hero-static-image.html' %}
+
+<div id="start-of-content" class="content">
+	<div class="layout-one-column-spread">
+		<article class="hentry page">
+			<h1>{{ entry.title }}</h1>
+			{{ entry.body }}
+		</article>
+	</div>
+</section>
+{% endblock %}

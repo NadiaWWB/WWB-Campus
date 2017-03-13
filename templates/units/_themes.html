@@ -1,0 +1,32 @@
+{% for theme in themes %}
+  {% set themeTitle = theme.theme.first().title %}
+  {% set articles = theme.relatedArticles %}
+  {% if themes | length %}
+    <div class="row units">
+      <h5>{{ themeTitle }}</h5>
+      <div class="column-inner">
+        {% for block in theme.images %}
+          {% if block.type == "image" %}
+            {% set image = block.image.first() %}
+            {% if image %}
+              <div href="{{unit.url}}" class="image-box" style="background-image:url({{ image.getUrl() }});"></div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="column-inner">
+        <ul class="article-list">
+          {% for article in articles %}
+            <li style="margin-bottom:.75em;">
+              <a href="{{article.url}}">
+                <strong>
+                  {{ article.title }}
+                </strong>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}

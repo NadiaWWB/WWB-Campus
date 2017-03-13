@@ -1,0 +1,28 @@
+.image-box {
+  background-color: #000;
+  position: relative;
+  float: left;
+  margin: 0 2em 1em 0;
+  height: 250px;
+  width: 100%;
+  repeat: no-repeat;
+  background-size: cover;
+  border-radius: 4px;
+  //z-index:-1;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+
+.image-box-heading {
+  border-radius:0 0 4px 4px;
+  width:100%;
+  position:absolute;
+  bottom:0;
+  left:0;
+  padding:.5em;
+  background-color:rgba(0,0,0,0.5);
+  color:white
+}

@@ -1,0 +1,1 @@
+var menu=$("#navigation-menu"),menuToggle=$("#js-mobile-menu");$(menuToggle).on("click",function(e){e.preventDefault(),menu.slideToggle(function(){menu.is(":hidden")&&menu.removeAttr("style")})});

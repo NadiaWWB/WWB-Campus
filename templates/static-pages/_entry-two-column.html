@@ -1,0 +1,26 @@
+{% extends "_layout" %}
+
+{% block content %}
+{% include 'global/_hero-static-image.html' %}
+<div id="start-of-content" class="content">
+	<div class="layout">
+
+			<aside>
+			<h5>Latest from the Blog</h5>
+			<ul>
+				{% for entry in craft.entries.section('news').limit(10).find() %}
+					<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
+
+					<br />
+				{% endfor %}
+			</ul>
+
+		</aside>
+		<article class="hentry page boxed">
+			<h1>{{ entry.title }}</h1>
+			{{ entry.body }}
+		</article>
+
+	</div>
+</section>
+{% endblock %}

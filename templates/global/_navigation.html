@@ -1,0 +1,31 @@
+<li class="nav-item" tabindex="1" data-ga-click="Header, go to home page, text:home">
+	<a href="/">Home</a>
+</li>
+<li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'about' %} active{% endif %}{% endif %}" tabindex="2" data-ga-click="Header, go to explore, text:about">
+	<a href="/about/">About</a>
+</li>
+<li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'find' %} active{% endif %}{% endif %}" tabindex="3" data-ga-click="Header, go to explore, text:find">
+	<a href="/find/">Find Literature</a>
+</li>
+<li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'educators' %} active{% endif %}{% endif %}" tabindex="4" data-ga-click="Header, go to explore, text:educators">
+	<a href="/educators/">For Educators</a>
+</li>
+<li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'news' %} active{% endif %}{% endif %}" tabindex="5" data-ga-click="Header, go to explore, text:blog">
+	<a href="/news/">Blog</a>
+</li>
+<li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'contact' %} active{% endif %}{% endif %}" tabindex="6" data-ga-click="Header, go to explore, text:contact">
+	<a href="/contact/">Contact</a>
+</li>
+
+
+{# getSegment(3) and blog/category examples show synching up current tag's name with URL
+  If changes, here, change footer too - separate because the links don't have tabindex there
+#}
+
+
+
+
+
+
+
+

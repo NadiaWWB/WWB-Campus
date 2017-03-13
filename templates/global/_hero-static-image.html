@@ -1,0 +1,77 @@
+{% if entry is defined %}
+  {% set intro = entry.introduction %}
+  {% set splashImage = entry.images.first %}
+  {% if splashImage | length %}
+    <style type="text/css">
+      {% for block in entry.images %}
+        {% if block.type == "image" %}
+          {% set image = block.image.first() %}
+          .hero {
+              background: url("{% if image %}{{ image.url }}{% endif %}");
+              background-position: center center;
+              background-size: cover;
+              
+            }
+        {% endif %}
+      {% endfor %}
+    </style>{#  height: 350px; #}
+    <div class="hero">
+      <div class="hero-inner">{# style="min-height:400px;" #}
+          <div class="hero-copy hero-pullquote">
+            <h4>{{entry.title}}</h4>
+          </div>
+        {% if entry.section.handle == 'unit' %}{% endif %}
+      </div>
+    </div>
+  {% else %}
+    <div class="hero">
+      <div class="hero-inner"> {# style="min-height:300px;" #}
+        {# {% if entry.introduction| length %}
+          <blockquote>{{ entry.introduction | striptags }}</blockquote>
+          {% endif %} #}
+      </div>
+    </div>
+  {% endif %}
+{% else %}
+  <div class="hero">
+    {# <div class="hero-inner">
+        <h1>Words Without Borders CAMPUS</h1>
+    </div> #}
+  </div>
+{% endif %}
+<footer class="footer-sur" id="content-info">
+  {% if entry is defined %}
+    {% if entry.section.handle == 'article' %}
+      <ul>
+      {% for relatedUnit in units %}
+        <li style="text-align:right;">
+          <strong>
+            <a href="{{ relatedUnit.url }}">
+              {{ relatedUnit.title }}
+            </a>
+          </strong>
+          /{% if relatedThemes %}
+            {{ relatedThemes }}
+           {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <ul class="footer-sur-heading"><li><a href="/">{{ siteName }}</li></ul>
+  {% endif %}
+{% endif %}
+
+
+
+
+
+
+
+
+
+    <div class="footer-secondary-links" style="float:right;">
+      <ul class="footer-social">
+      {% include 'global/_social-links.html' %}
+      </ul>
+    </div>
+</footer>

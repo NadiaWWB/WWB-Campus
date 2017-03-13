@@ -1,0 +1,52 @@
+{% extends "_layout" %}
+
+{% block content %}
+{% include 'global/_hero-static-image.html' %}
+<div id="start-of-content" class="content">
+  <div class="layout">
+  <aside>
+      {{ entry.body }}
+    </aside>
+    <article class="hentry">
+      <h1>{{ entry.title }}</h1>
+
+
+
+<form accept-charset="UTF-8" action="https://formkeep.com/f/2b854b7b89eb" method="POST" role="form" style="max-width:60%;">
+  
+  <p>
+    <label>Name</label><br />
+    <input tabindex="1" type="text" name="name" id="name" class="nice_form" size="40" maxlength="35" />
+  </p>
+  <p>
+    <label>Email Address</label><br />
+    <input tabindex="2" type="text" name="email" id="email" onblur="validateEmail(value)" class="nice_form" size="40" maxlength="35" />
+    <span class="error" id="emailError" style="display: none;">Please use a valid email address</span>
+  </p>
+  <p>
+    <label for="Subject">Subject</label><br />
+    <select name="subject" /><!-- <select name="subject[]" multiple="multiple" /> -->
+      <option value="Question about Campus">Question about Campus</option>
+      <option value="Technical Issue with the Campus Website">Report a technical issue</option>
+      <option value="Submitting ideas">Suggest a resource</option>
+      <option value="Sharing ideas from the Campus Website">Share a teaching idea</option>
+      <option value="Other from the Campus Website">Other</option>
+
+
+    </select>
+  </p>
+    <label>Message</label><br />
+      <textarea tabindex="3" name="message" class="nice_form" style="min-height:200px;"></textarea>
+  <p>
+    <button type="submit" class="pill tiny radius">Submit</button>
+  </p>
+</form>
+
+
+
+
+    </article>
+
+  </div>
+</section>
+{% endblock %}

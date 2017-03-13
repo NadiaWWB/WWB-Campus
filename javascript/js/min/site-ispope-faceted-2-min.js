@@ -1,0 +1,1 @@
+$(function(){var e=$("#container"),i=$("#filters input");e.isotope({itemSelector:".item",filter:".mexico"}),i.change(function(){var t=[];i.filter(":checked").each(function(){t.push(this.value)}),t=t.join(", "),e.isotope({filter:t})});var t=e.children()});

@@ -1,0 +1,53 @@
+{% set authors = entry.contributorAuthor %}
+{% extends "_layout" %}
+{% block content %}
+  {% include 'global/_hero-static-image.html' %}
+  <div id="start-of-content" class="content">
+    <div class="layout-2column">
+      <article class="hentry">
+		  	<header>
+			   	<h1>
+				  	{{ entry.title }}
+				  </h1>
+				  {% if authors | length %}
+  				  <h5>
+              by {% for author in authors %}{% if loop.last and not loop.first %} and {% endif %}{{ author.title }}{% if not loop.last %}, {% endif %}{% endfor %}
+            </h5>
+          {% endif %}
+        </header>
+				{{ entry.introduction }}
+        {% if entry.contributorAuthor  | length %}
+          <hr />
+          <h4>About the Author</h4>
+          <div class="metadata">
+            {% for author in authors %}
+              <h5>{{author.title}}</h5>
+              {% for block in author.images %}
+                {% if block.type == "image" %}
+                  {% set image = block.image.first() %}
+                  {% if image %}
+                  <img src="{{ image.url }}" style="max-width:100%;float:left;margin:6px 12px 4px 0;">
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            {{author.body}}
+            {% for block in author.images %}
+              {% if block.captionCredit  %}
+                <div class="caption" style="margin-bottom:10px;">image: {{ block.captionCredit }}</div>
+              {% endif %}
+            {% endfor %}
+          <br />
+          {% endfor %}
+        </div>          
+      {% endif %}
+		</article>
+      <h5 style="text-align:right;"><strong><a href="/find/">Search for more literature &raquo;</a></strong></h5>
+      <br />
+		<aside>
+		  <h3>Themes</h3>
+		  {% set themes = craft.entries.section('unitThemes').relatedTo(entry) %}
+      {% include "units/_themes.html" %}
+    </aside>
+	 </div>
+  </div>
+{% endblock %}

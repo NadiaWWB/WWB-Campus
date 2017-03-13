@@ -1,0 +1,45 @@
+{% set intro = entry.introduction %}
+{% set units = craft.entries.section('units').order('postDate desc').find() %}
+
+{% set theme = craft.request.getParam('theme') %}
+{% set genre = craft.request.getParam('genre') %}
+{% set query = craft.request.getParam('q') %}
+{% set articles = craft.entries.section('article').order('postDate desc').limit(200) %}
+{% extends "_layout" %}
+{% block content %}
+	{% include 'global/_hero-static-image.html' %}
+	<div id="start-of-content" class="content">
+		<div class="layout-2column-spread">
+			<div style="margin-bottom:2em;">
+				<h5 style="display:inline-block;margin-right:2em;">Jump to: </h5>
+				{% for entry in craft.entries.section('units').limit(100).find() %}
+					<a href="{{ entry.url }}">
+						<div class="unit" style="display:inline-block;margin-right:3em;">
+							<button>{{ entry.title }}</button>
+						</div>
+					</a>
+				{% endfor %}
+			</div>
+		</div><!-- end top section -->
+		<div class="layout-2column-wide">
+			<div id="results" class="posts">
+				<h5>Search using the box below, or browse using the<br /> lists on the right</h5>
+				<form method="get" action="{{ url('/find/results/#results') }}">
+	  			<input type="search" name="q" placeholder="Search" style="display:inline-block;padding:.4em .5em;font-size:1.1em;width:42%;" />
+	  			<input type="submit" value="Go" style="margin-top:-5px;">
+				</form>
+				{% block searchlabel %}
+					<hr class="divider" />
+				{% endblock %}
+				{% if articles | length %}
+					<ul id="container" class="grid filtered-list list-filter list">
+						{% include "find/_articles.html" %}
+					</ul>
+				{% endif %}
+			</div>
+			<aside>
+				{% include 'find/_sidebar.html' %}
+			</aside>
+		</div>
+	</div>
+{% endblock %}

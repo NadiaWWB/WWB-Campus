@@ -1,0 +1,221 @@
+.wrapper {
+  @include outer-container;
+  background-color: $base-background-color;
+}
+
+.content {
+  background-color: $base-background-color;
+  @include outer-container;
+  margin-top:1em;
+  padding-bottom:10em;
+  @include pad(2em 1em);
+  @include media($small-screen-up) {
+    @include pad(2em 3em);
+  }
+}
+
+.columns {
+  width:100%;
+  clear:both;
+  margin-top:30em;
+}
+
+.row {
+  width:100%;
+  clear:both;
+  @include row;
+}
+
+.padded-left-2 {
+  padding-left:2em;
+}
+
+.column {
+  @include span-columns(12);
+  @include media($normal-screen-up) {
+    @include span-columns(4 of 12);
+  }
+}
+
+.column-inner {
+  @include span-columns(12);
+  @include media($xlarge-screen-up) {
+    @include span-columns(6 of 12);
+  }
+}
+
+.columns-inner {
+  @include span-columns(12);
+  @include media($normal-screen-up) {
+    @include span-columns(6 of 12);
+  }
+}
+
+
+.column-primary {
+  @include outer-container;
+  @include span-columns(12);
+  @include media($normal-screen-up) {
+    @include span-columns(8 of 12);
+  }
+
+  .image-box {
+    //@include span-columns(12);
+      //@include span-columns(6 of 12); 
+      //@include omega(4n);
+    @include media($medium-screen-up) {
+      @include span-columns(4 of 12); 
+      @include omega(4n);
+    }
+   
+  }
+}
+
+aside, .boxed {
+  //background-color: white;
+  @include pad();
+  border-radius: 4px;
+  margin-bottom: 4em;
+}
+
+.boxed {
+  @include media($normal-screen-up) {
+    @include pad(2em);
+    box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.15);
+  }
+}
+article {
+  @include pad(3em 0em);
+}
+
+aside {
+  background-color: white;
+  border-top: 4px solid $base-accent-color;
+}
+.layout-article {// Articles spread content evenly between article and aside
+  article {
+    @include span-columns(12);
+  }
+  aside {
+    @include span-columns(12);
+    background-color: transparent;
+    border-top: none;
+  }
+  @include media($normal-screen-up) {
+    article {
+      @include span-columns(6.75 of 12);
+      p { //constrain text because this is pretty wide - for using larger glit space
+        padding-right:3em;
+      }
+      //background-color:red;// use this to measure the space, remove for production
+    }
+    aside {
+      @include span-columns(5.25 of 12);
+      @include pad(0);
+      //background-color:blue; // use this to measure the space, remove for production
+    }
+  }
+}
+
+.layout-2column-spread { //2 column spread is a typical 1 wide, 1 small column
+    @include outer-container;
+    article {
+      @include span-columns(12);
+    }
+    aside {
+      @include span-columns(12);
+    }
+    @include media($normal-screen-up) {
+      aside {
+         @include span-columns(3 of 12);
+      }
+      .posts {
+         @include span-columns(7 of 12);
+         article.hentry {
+           background-color: white;
+         margin-bottom: 4em;
+      }
+    }
+  }
+}
+
+.layout-2column-wide { //2 column spread is a typical 1 wide, 1 small column
+    @include outer-container;
+    article {
+      @include span-columns(12);
+    }
+    aside {
+      @include span-columns(12);
+    }
+    @include media($normal-screen-up) {
+      aside {
+         @include span-columns(3 of 12);
+      }
+      .posts {
+         @include span-columns(9 of 12);
+         article.hentry {
+           background-color: white;
+         margin-bottom: 4em;
+      }
+    }
+  }
+}
+.layout-2column { //2 column spread is a typical 1 wide, 1 small column
+    @include outer-container;
+    article {
+      @include span-columns(12);
+    }
+    aside {
+      @include span-columns(12);
+    }
+    @include media($normal-screen-up) {
+      aside {
+         @include span-columns(5 of 12);
+      }
+         article.hentry {
+           @include span-columns(7 of 12);
+
+      }
+  }
+}
+.units { 
+  margin-bottom: 2em;
+}
+.layout {
+    @include outer-container;
+    aside {
+      @include span-columns(3);
+      background-color:white;
+      border-radius: 3px;
+      min-height:300px;
+      @include pad();
+    }
+   article {
+     @include span-columns(9);
+     @include pad();
+  }
+}
+
+.layout-one-column-spread {
+  @include outer-container;
+  max-width:90%;
+  article {
+    @include span-columns(12);
+    padding: 2em;
+  }
+  article.hentry p {
+    @include columns(1);
+    @include column-gap(80px);
+    //text-align:justify;
+    font-size:1em;
+  }
+  h1 {
+    text-align:center;
+    margin-bottom:2em;
+  }
+  @include media($large-screen) {
+    article.hentry p {
+       @include columns(2);
+    }
+  }
+}

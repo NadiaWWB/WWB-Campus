@@ -1,0 +1,13 @@
+form {
+  font-size: 1.2em;
+  label {
+    color: $wwb-orange;
+    display: inline-block;
+  }
+}
+
+form input.inline {
+  display:inline-block;
+  margin-right: 7px;
+
+}

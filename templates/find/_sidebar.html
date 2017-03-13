@@ -1,0 +1,34 @@
+{% set entryIds = craft.entries.section('article').ids() %}
+<div id="filters" class="filters">
+  <h5>Country</h5>
+  <div class="option-set button-group" data-filter-group="country">
+    {% for entry in craft.entries.section('units').limit(100).find() %}
+      <button class="button" data-filter=".{{ entry.slug }}" data-label=" ‘{{ entry.title }}’ ">{{ entry.title }}</button>
+    {% endfor %}
+    <small><button class="button" data-filter="">any</button></small>
+  </div>
+  <hr />
+  <h5>Genre</h5>
+  <div class="option-set button-group" data-filter-group="genre">
+    {% set categories = craft.categories.relatedTo({ sourceElement: entryIds }).group('genre').find() %}
+      {% for category in categories %}
+         <button class="button"  data-filter=".{{ category.slug }}" data-label=" ‘{{ category.title }}’ ">{{ category.title }}</button>
+      {% endfor %}
+      <small><button class="button" data-filter="">any</button></small>
+    </div>
+    <hr />
+  <h5>Themes</h5>
+  <div class="option-set button-group" data-filter-group="theme">
+    {% set categories = craft.categories.relatedTo({ sourceElement: entryIds }).group('theme').find() %}
+      {% for category in categories %}
+        <button class="button"  data-filter=".{{ category.slug }}" data-label=" ‘{{ category.title }}’ ">{{ category.title }}</button>
+      {% endfor %}
+      <small><button class="button" data-filter="">any</button></small>
+  </div>
+</div>
+
+
+<hr class="divider" />
+
+{# TODO: Fix Teaching Ideas page #}
+{# <h5><a href="/educators/teaching-ideas/">For U.S. Secondary Teachers: Teaching International Literature with the CCS</a></h5> #}

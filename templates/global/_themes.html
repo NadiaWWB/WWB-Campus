@@ -1,0 +1,17 @@
+{% for theme in themes %}
+  {% if themes | length %}
+    {% set unit = theme.unitCountry.first() %}          
+    {% for block in theme.images %}
+      {% if block.type == "image" %}
+        {% set image = block.image.first() %}
+        {% if image %}
+          <a href="{{unit.url}}" class="image-box" style="background-image:url({{ image.getUrl() }});background-position: center top;">
+            <div class="image-box-heading">
+              <h6>{{ theme.theme.first().title }}<br /><small>in {{ unit.title }}</small></h6>
+            </div>
+          </a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}

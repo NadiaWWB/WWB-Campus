@@ -1,0 +1,31 @@
+{% extends "find/index" %}
+
+{% block searchlabel %}
+  <hr class="divider" />
+  {% if query|length %}
+    <h5>Searched for {{ query }}
+      <br />
+      <small>
+        {{ articles | length }} results
+        <a href="/find/#results">reset search</a>
+      </small>
+    </h5>
+    <br />
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+{% set articles = craft.entries({
+    section: 'article',
+    order: 'score',
+    search: {
+
+      attribute: 'articleConcatenated',
+        query: query,
+        subLeft: false,
+        subRight: false
+    }
+}) %}
+
+{{ parent() }}
+{% endblock %}

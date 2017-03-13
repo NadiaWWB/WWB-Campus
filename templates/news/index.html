@@ -1,0 +1,31 @@
+{% extends "_layout" %}
+{% block content %}
+{% include 'global/_hero-static-image.html' %}
+<div id="start-of-content" class="content">
+	<div class="layout-2column-spread">
+		<aside>
+			<h5>Latest Entries</h5>
+			<ul>
+				{% for entry in craft.entries.section('news').limit(10).find() %}
+					<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
+
+					<br />
+				{% endfor %}
+			</ul>
+		</aside>
+		<div class="posts">
+			{% for entry in craft.entries.section('news').limit(100).find() %}
+				<article class="hentry boxed">
+					<h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
+					<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
+					{{ entry.body.getPage(1) }}
+					{% if entry.body.getTotalPages() > 1 %}
+			<p><a href="{{ entry.url }}">Continue reading</a></p>
+			{% endif %}
+				</article>
+
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %}

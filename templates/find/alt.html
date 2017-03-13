@@ -1,0 +1,125 @@
+{% set intro = entry.introduction %}
+{% extends "_layout" %}
+
+{% block content %}
+
+{% include 'global/_hero-static-image.html' %}
+
+<div id="start-of-content" class="content">
+<div class="layout-2column-spread">
+<div style="margin-bottom:2em;">
+			<h5 style="display:inline-block;margin-right:3em;">Jump directly to Unit Pages: </h5>
+				{% for entry in craft.entries.section('units').limit(100).find() %}
+					<a href="{{ entry.url }}">
+				<div class="unit" style="display:inline-block;margin-right:3em;">
+					<h5>{{ entry.title }}</h5>
+				</div>
+					</a>
+			{% endfor %}
+			</div>
+</div>
+
+	<div id="container-filter" class="layout-2column-spread">
+		<aside>
+			{% include 'read-by-country-or-theme/_sidebar.html' %}
+		</aside>
+
+		<div class="posts">
+
+
+
+
+
+
+<div class="searching-stuff">
+
+<h5>Search, or Filter by Categories to the Left</h5>
+<input class="fuzzy-search" placeholder="Search" style="display:inline-block;padding:.4em .5em;font-size:1.1em;width:100%;margin-bottom:1em;" />
+
+	{% set units = craft.entries.section('units').limit(100).order('postDate desc').find() %}
+	<ul class="list-filter">
+		{% for unit in units %}
+			{% set themes = unit.themesAndArticles %}
+			<li>
+				<h1 class="unit">{{ unit.title }}</h1>
+					<ul>
+						{% for block in themes %}
+							{% set categories = block.theme %}
+							{% if categories | length %}
+								{% for cat in categories %}
+									<li>
+										<h5 class="theme">{{ cat.title }}</h5>
+											{% set articles = block.articlesInThisTheme %}
+											<ul>
+												{% for article in articles %}
+													{% set authors = article.contributorAuthor %}
+													{% set genre = article.genre.first %}
+													<li style="margin-bottom:1em;">
+														<a href="{{article.url}}" class="name">{{ article.title }}</a>
+															<span class="slug hidden">{{ article.slug }}</span>
+
+															{% if genre | length %}{{ genre.title }}{% endif %}
+	                						{% if authors | length %}
+									                 by {% for author in authors %}
+                 							{% if loop.last and not loop.first %} and {% endif %}{{ author.title }}{% if not loop.last %}, {% endif %}
+                 						{% endfor %}{% endif %}
+
+
+
+
+
+
+
+													</li>
+												{% endfor %}
+											</ul>
+								{% endfor %}
+							{% endif %}
+						{% endfor %}
+					</ul>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<table>
+<tableBody>{#
+{% for article in craft.entries.section('article').limit(10).find() %}
+	{% set relatedThemes = craft.entries.section('unit').relatedTo(article) %}
+
+
+<tr><td><a href="{{ article.url }}">{{ article.title }}</a></td>
+<td>{{article.genre.first}}</td>
+<td>{{relatedThemes.title}}Unit</td>
+<td>Theme</td>
+</tr>
+
+
+{% endfor %}
+ #}</tableBody>
+</table>
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,103 @@
+a.no-print, .no-print, .nav, .sidebar-right, .navigation-menu-button, .navigation-tools, hr, .logo, iframe, .fluid-width-video-wrapper {
+  display: none; }
+
+#teaching-ideas-content, #playlist, #context, #bios, #graphic-lit {
+  display: none; }
+
+img.graphic-lit {
+  max-width: 500px;
+  max-height: 96%;
+  padding: 0;
+  margin: 0 auto; }
+
+@page {
+  margin: 2cm; }
+
+/* print.css */
+body {
+  font: 12pt "myriad-pro", "Avenir 45 Book", "Lato", "Open Sans", "Helvetica Neue", Segoe, "Segoe UI", Arial, sans-serif;
+  line-height: 1.5;
+  color: #000;
+  background: none; }
+
+hr {
+  background: #ccc;
+  color: #ccc;
+  width: 100%;
+  height: 2px;
+  margin: 2em 0;
+  padding: 0;
+  border: none; }
+
+hr.space {
+  background: #fff;
+  color: #fff;
+  visibility: hidden; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif; }
+
+h1.entry-title {
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+  font-size: 30pt;
+  margin: 0; }
+
+header {
+  margin: 0; }
+
+code {
+  font: .9em "Courier New", Monaco, Courier, monospace; }
+
+a img {
+  border: none; }
+
+p img.top {
+  margin-top: 0; }
+
+blockquote {
+  margin: 1.5em;
+  padding: 1em;
+  font-style: italic;
+  font-size: .9em; }
+
+.small {
+  font-size: .9em; }
+
+.large {
+  font-size: 1.1em; }
+
+.quiet {
+  color: #999; }
+
+.hide {
+  display: none; }
+
+ul li {
+  list-style-type: none; }
+
+a:link, a:visited {
+  background: transparent;
+  text-decoration: none;
+  color: #000; }
+
+a.logo:link, a.logo:active, a.logo:visited, .logo img {
+  display: none;
+  width: 90px; }
+
+a.tab-link:link, a.tab-link:active, a.tab-link:visited, .section-title {
+  display: block;
+  color: black;
+  text-decoration: none;
+  font-family: 'Roboto Slab','Open Sans', "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+  font-size: 23pt; }
+
+#banner, #top, #banner_interior, #footer, footer, .footer-sur, .footer-2 {
+  display: none; }
+
+.print_only, .print-only {
+  display: block; }
+
+.section-break {
+  display: block;
+  page-break-before: always;
+  padding: 0; }

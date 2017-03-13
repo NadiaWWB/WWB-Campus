@@ -1,0 +1,31 @@
+{% set intro = entry.introduction %}
+{% extends "_layout" %}
+{% block content %}
+{% include 'global/_hero-static-image.html' %}
+<div id="start-of-content" class="content">
+	<div class="layout-2column-spread">
+		<aside>
+			<h5>Help Topics</h5>
+			<ul>
+				{% for block in entry.text %}
+					<li><a href="#{{ block.sectionTitle | lower | replace(' ', '-') }}">{{ block.sectionTitle }}</a></li>
+				{% endfor %}
+			</ul>
+<hr />
+		</aside>
+		<div class="posts">
+			{% if entry.body | length %}
+				<article class="hentry boxed">
+					{{ entry.body }}
+				</article>
+			{% endif %}
+			{% for block in entry.text %}
+				<article id="{{ block.sectionTitle | lower | replace(' ', '-') }}" class="hentry boxed" style="margin:1em 0;">
+					<h2>{{ block.sectionTitle}}</h2>
+					{{ block.sectionCopy }}
+				</article>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %}

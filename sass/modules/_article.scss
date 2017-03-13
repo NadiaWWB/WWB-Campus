@@ -1,0 +1,193 @@
+
+article.hentry {
+
+  header {
+    margin-bottom: 1.5em;
+  }
+  img {
+  	max-width: 100%;
+  }
+
+  p {
+    font-size: $base-font-size * 1;
+
+  }
+
+  h1, h1 a, h2, h2 a {
+    color: $wwb-green;
+  }
+}
+
+//setup typographical style of indented paragraphs
+p:first-child,
+h1 + p,
+h2 + p,
+h3 + p,
+h4 + p,
+h5 + p,
+h6 + p,
+hr + p, {
+  text-indent: 0;
+}
+
+body.fiction p, body.nonfiction p {
+text-indent: 1.5rem;
+}
+
+body.poetry p {
+ text-indent: 0;
+}
+aside.sidebar-right {
+//@extend .font-var;
+font-size: 12px;//$iota;
+
+}
+.content {
+  min-height: 800px;
+}
+
+.lead, .lead p {
+    font-size: 1.2em;
+
+  @include media($small-screen-up) {
+    font-size: 1.5em;
+  }
+}
+/// Places images
+.content img:first-child {
+    // float: none;
+    // margin: 0 0 1.5em 0;
+
+  // @include media($small-screen-up) {
+
+  //     float: left;
+  //     margin: .5em 1.4em 1.5em 0;
+  // }
+
+object, embed, iframe, aside embed, aside iframe, aside object, aside img {
+  max-width: 100% !important;
+}
+aside, aside  p{
+position: relative;
+height: 0;
+    overflow: hidden;
+}
+aside iframe, aside p iframe, .fit, .fit iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+}
+
+// the dev class on an article doesn't have indented paragraphs, but has space between them.
+
+hr {
+//margin-top:    @line-height-computed;
+//margin-bottom: @line-height-computed;
+margin:1em auto;
+border: 0;
+border-top: 1px solid #EEEEEE;
+}
+
+.screen-reader-text { /* Reusable, toolbox kind of class */
+position: absolute;
+top: -9999px;
+left: -9999px;
+}
+
+sup, sub {
+//@include adjust-font-size-to($kappa);
+ vertical-align: baseline;
+ position: relative;
+ top: -0.4em;
+}
+sub { top: 0.4em; }
+
+.footnotes li {
+//@extend small;
+
+}
+
+.sharing {
+margin-top: 4em;
+}
+
+blockquote {
+  max-width:100%;
+  margin-left:2em;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  text-align:left;
+  border-left:none;
+}
+
+th {
+  font-family: $sans-serif;
+}
+
+
+.quote {
+
+}
+hr {
+
+  border-top-color: darken($base-background-color, 52%)
+}
+.footnotes {
+  margin-top: 4em;
+}
+.footnotes ol li {
+  font-size: .9em;
+}
+h6 {
+  font-weight: normal;
+  text-align: center;
+}
+li.nav-sidebar-item{
+
+  text-align: left;
+
+  font-size: .9em;
+  padding-right: .75em;
+  padding-left: .75em;
+}
+
+.list ul li a.active {
+  font-weight: bold;
+}
+.caption {
+
+  font-style:italic;font-size:90%;
+}
+
+.caption p {
+  display:inline;
+}
+
+.bottom-right {
+  margin-top:3em;
+  text-align:right;
+}
+
+.accordion .submenu ul, article ul, .tab-content ul, article ol, .tab-content ol {
+margin-bottom: 1em;
+margin-left:1.5em;
+}
+
+.accordion .submenu ul li, article ul li, .tab-content ul li {
+    list-style-type: circle;
+    margin-left: 1em;
+    margin-bottom: 0em;
+    line-height: 1.7;
+  }
+
+  .accordion .submenu ol li, article ol li, .tab-content ol li {
+    list-style-type: decimal;
+    margin-left: 1.5em;
+    margin-bottom: 0;
+    line-height: 1.7;
+  }

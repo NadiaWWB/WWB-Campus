@@ -1,0 +1,41 @@
+{% set intro = entry.introduction %}
+{% extends "_layout" %}
+
+{% block content %}
+
+{% include 'global/_hero-static-image.html' %}
+
+<div id="start-of-content" class="content">
+	<div class="layout-2column-spread">
+
+		<div class="posts">
+			{% for entry in craft.entries.section('units').limit(100).find() %}
+				<article class="hentry">
+					<h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
+					<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
+					{{ entry.body.getPage(1) }}
+			<p><a href="{{ entry.url }}">Continue reading</a></p>
+				</article>
+
+			{% endfor %}
+		</div>
+		<aside>
+
+					{% for block in entry.themesAndArticles %}
+  					{% if block.unitTheme  %}
+     					{{ block.theme }}
+  					{% endif %}
+					{% endfor %}
+
+
+			<ul>
+				{% for entry in craft.entries.section('news').limit(10).find() %}
+					<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
+
+					<br />
+				{% endfor %}
+			</ul>
+		</aside>
+	</div>
+</section>
+{% endblock %}
