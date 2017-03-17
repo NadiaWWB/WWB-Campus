@@ -77,11 +77,18 @@
       {% if graphic | length %}
        {% include 'article/_graphic-lit.html' %}
       {% endif %}
+
+      <hr />
+
+      {% set units = craft.entries.section('unitThemes').relatedTo(entry).first() %}
+
+      <p>View more works from <a href="{{units.unitCountry.first().url}}">{{units.unitCountry.first().title}}.</a></p>
 		</article>
-    {% for relatedUnit in units %}
+    
+{#     {% for relatedUnit in units %}
  <h5 class="no-print" style="text-align:right;"><strong><a href="{{ relatedUnit.url }}">Back to {{ relatedUnit.title }} &raquo;</a></strong></h5>
  <br />
-{% endfor %}
+{% endfor %} #}
 		<aside>
     {% include 'article/_tabs.html' %}
      <div class="script-only hidden">
