@@ -1,0 +1,6 @@
+[template]
+src = "wwb.conf.tmpl"
+dest = "/etc/nginx/conf.d/wwb.conf"
+keys = [
+    "/wwb/nginx/servername",
+]

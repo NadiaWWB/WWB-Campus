@@ -1,0 +1,74 @@
+# NOTE: this config won't work if you have the built-in /etc/nginx/sites-enabled/default,
+# because it redefines a "default server". Use `nginx -t` or check /var/log/nginx/* if
+# things seem broken.
+
+# handle requests directly to the IP address, or any other non-approved host
+server {
+  listen 80 default_server;
+  server_name  _;
+
+  # this is for AWS load balancer health checks, etc - we need some route,
+  # accessible on an internal IP, that returns an HTTP 200 response
+  location /status {
+      add_header Content-Type text/plain;
+      return 200 'healthy';
+  }
+
+  # for everything else, terminate the connection.
+  # 444 is an nginx-specific response code that means "close the connection"
+  # http://nginx.org/en/docs/http/request_processing.html
+  location / {
+    return 444;
+  }
+}
+
+log_format apm '"$time_local" client=$remote_addr '
+               'method=$request_method request="$request" '
+               'request_length=$request_length '
+               'status=$status bytes_sent=$bytes_sent '
+               'body_bytes_sent=$body_bytes_sent '
+               'referer=$http_referer '
+               'user_agent="$http_user_agent" '
+               'upstream_addr=$upstream_addr '
+               'upstream_status=$upstream_status '
+               'request_time=$request_time '
+               'upstream_response_time=$upstream_response_time ';
+
+# brad bell's recommendation for a craft nginx setup
+# http://craftcms.stackexchange.com/questions/961/what-is-the-recommended-nginx-configuration-for-craft
+server {
+  listen 80;
+  charset utf8;
+  server_name {{getv "/wwb/nginx/servername"}};
+  root /var/www/html;
+  index index.php index.html;
+
+  # Logs
+  error_log /var/log/nginx/wwb-docker.localhost.error.log debug;
+  access_log /var/log/nginx/wwb-docker.localhost.access.log apm;
+
+  location ~ \.php$ {
+    include fastcgi_params;
+    fastcgi_pass 127.0.0.1:9000;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+  }
+
+  location ~ ^/es/(.*)$ {
+      try_files $uri $uri/ /es/index.php?p=$uri&$args;
+  }
+
+  location ~ ^(.*)$ {
+      try_files $uri $uri/ /index.php?p=$uri&$args;
+  }
+
+  location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
+    expires max;
+    add_header Pragma public;
+    add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+  }
+
+  location = /robots.txt  { access_log off; log_not_found off; }
+  location = /favicon.ico { access_log off; log_not_found off; }
+  location ~ /\. { access_log off; log_not_found off; deny all; }
+}
