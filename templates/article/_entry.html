@@ -80,15 +80,28 @@
 
       <hr class="divider" />
 
+      
+
+      {% if entry.pairsWellWith %}
+      <h3>Pairs well with:</h3>
+      <ul>
+        {% for pair in entry.pairsWellWith.find() %}
+        <li><a href="{{pair.url}}">{{pair.title}}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      
       {% set units = craft.entries.section('unitThemes').relatedTo(entry).first() %}
 
       <p>Read more literature from <a href="{{units.unitCountry.first().url}}">{{units.unitCountry.first().title}}.</a></p>
+
+
 		</article>
     
-{#     {% for relatedUnit in units %}
+{# % for relatedUnit in units %}
  <h5 class="no-print" style="text-align:right;"><strong><a href="{{ relatedUnit.url }}">Back to {{ relatedUnit.title }} &raquo;</a></strong></h5>
  <br />
-{% endfor %} #}
+{% endfor % #} 
 		<aside>
     {% include 'article/_tabs.html' %}
      <div class="script-only hidden">
