@@ -1,0 +1,48 @@
+{% extends "_layout" %}
+{% set query = craft.request.getQuery('query') %}
+{% block content %}
+	{% include 'global/_hero-static-image.html' %}
+
+	<div id="start-of-content" class="content">
+		<h1>Search Results for: {{query}}</h1>
+
+		{% set results = craft.entries({
+		    search: {
+		        query: query,
+		        subLeft: true,
+		        subRight: true                
+		    }, 
+		    section: [
+		    	'article', 
+		    	'contributors', 
+		    	'extras', 
+		    	'news', 
+		    	'unitThemes', 
+		    	'units',
+		    	'teachingIdeas'
+		    ], 
+		    order: 'score'
+		}) %}
+
+		<ul>
+		{% for entry in results %}
+
+            <li><a href="{{ entry.url }}"><strong>{{entry.section}}</strong> - {{ entry.title }}</a></li>
+		   
+		{% endfor %}
+		 </ul>
+
+		{# {% set entriesBySection = results|group('section') %} #}
+
+		{# {% for section, entriesInSection in entriesBySection %}
+		    <h2>{{ section }}</h2>
+
+		    <ul>
+		        {% for entry in entriesInSection %}
+		            <li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
+		        {% endfor %}
+		    </ul>
+		{% endfor %} #}
+
+	</div>
+{% endblock %}
