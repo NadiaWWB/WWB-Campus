@@ -1,0 +1,30 @@
+version: "2"
+
+services:
+  session_cache:
+    container_name: tortuga_session_cache_1
+    image: memcached:1.4.34
+
+  app:
+    container_name: wwb_1
+    build: ./
+    entrypoint:
+       - "/bin/bash"
+       - "-c"
+       - "exec /usr/local/bin/wwb_init.sh"
+    environment:
+      - WWB_NGINX_SERVERNAME=wwb-docker.localhost another-wwb-docker.localhost
+      - TORTUGA_PHP_SESSIONSAVEPATH=tortuga_session_cache_1:11211
+
+    # mount volumes for livereloading - the only one we need in a production env
+    # is /etc/wwb
+    volumes:
+      - ./craft/app:/var/www/craft/app
+      - ./craft/config:/var/www/craft/config
+      - ./craft/plugins:/var/www/craft/plugins
+      - ./craft/plugins:/var/www/craft/storage
+      - ./templates:/var/www/templates
+      - ./html:/var/www/html
+      - ./local_config:/etc/wwb
+    ports:
+      - "80:80"
