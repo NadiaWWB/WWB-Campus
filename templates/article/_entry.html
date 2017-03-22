@@ -83,7 +83,7 @@
       
 
       {% if entry.pairsWellWith %}
-      <h3>Pairs well with:</h3>
+      <h3>Related Reading</h3>
       <ul>
         {% for pair in entry.pairsWellWith.find() %}
         <li><a href="{{pair.url}}">{{pair.title}}</a></li>
