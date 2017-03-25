@@ -81,14 +81,22 @@
       <hr class="divider" />
 
       
-
-      {% if entry.pairsWellWith %}
+      <div class="related-reading">
+      {% if entry.relatedReading %}
       <h3>Related Reading</h3>
-      <ul>
-        {% for pair in entry.pairsWellWith.find() %}
-        <li><a href="{{pair.url}}">{{pair.title}}</a></li>
+      {# <ul> #}
+        {% for related in entry.relatedReading %}
+        {# <li> #}
+          {% set relatedArticle = related.relatedArticle.first()  %}
+          <h4><a href="{{relatedArticle.url}}">{{relatedArticle.title}}</a> - <span class="genre">{{relatedArticle.genre.first()}}</span></h4>
+          {% if related.alternateDesription %}
+            {{related.alternateDesription}}
+          {% else %}
+            {{relatedArticle.introduction}}
+          {% endif %}
+        {# </li> #}
         {% endfor %}
-      </ul>
+      {# </ul> #}
       {% endif %}
       
       {% set units = craft.entries.section('unitThemes').relatedTo(entry).first() %}
