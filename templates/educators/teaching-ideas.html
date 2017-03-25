@@ -29,21 +29,21 @@
 									{% if teachingTip.readingStandard  | length %}
 									<strong>Addresses these Common Core Standard for Reading: </strong> {# TODO: Output Group Name #}
 									{% for readingStandard in teachingTip.readingStandard %}
-										{{readingStandard.name }},
+										{{readingStandard.title }},
 									{% endfor %}
 								{% endif %}
 											<br />
                 {% if teachingTip.nysCcs  | length %}
                   <strong>& NYS CCSS: </strong>
                   {% for nysCcs in teachingTip.nysCcs %}
-                    {{nysCcs.name }},
+                    {{nysCcs.title }},
                   {% endfor %}
                 {% endif %}
                 <br />
                 {% if teachingTip.writingStandard  | length %}
                   <strong>Common Core Anchor Standards for Writing: </strong>
                   {% for writingStandard in teachingTip.writingStandard %}
-                    {{writingStandard.name }},
+                    {{writingStandard.title }},
                   {% endfor %}
                 {% endif %}
 
@@ -86,7 +86,7 @@ Copy goes here
     <p class="dropdown-button dropdown-reading">Click to Select</p>
     <ul class="menu menu-reading">
     {% for tag in craft.tags.group('ccasReading') %}
-      <li>{{tag.name}}</li>
+      <li>{{tag.title}}</li>
 
       {% endfor %}
     </ul>
@@ -101,7 +101,7 @@ Copy goes here
     <p class="dropdown-button dropdown-nystate">Click to Select</p>
     <ul class="menu menu-nystate">
     {% for tag in craft.tags.group('nysccs') %}
-      <li>{{tag.name}}</li>
+      <li>{{tag.title}}</li>
 
       {% endfor %}
     </ul>
@@ -115,7 +115,7 @@ Copy goes here
     <p class="dropdown-button dropdown-writing">Click to Select</p>
     <ul class="menu menu-writing">
     {% for tag in craft.tags.group('ccasWriting') %}
-      <li>{{tag.name}}</li>
+      <li>{{tag.title}}</li>
 
       {% endfor %}
     </ul>
