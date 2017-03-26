@@ -1366,6 +1366,12 @@ li.nav-sidebar-item {
   margin-bottom: 0;
   line-height: 1.7; }
 
+.related-reading h4 {
+  font-size: 1.25em; }
+
+.related-reading .divider {
+  margin: 1em 0em; }
+
 .related-reading .genre {
   color: #676767;
   font-style: italic; }

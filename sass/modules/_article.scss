@@ -192,6 +192,16 @@ margin-left:1.5em;
     line-height: 1.7;
   }
 
+.related-reading h4{
+    font-size: $h5-font-size;
+}
+
+.related-reading {
+  .divider{
+    margin: 1em 0em;
+  }
+}
+
 .related-reading .genre{
   color: lighten($base-font-color, 25);
   font-style: italic;
