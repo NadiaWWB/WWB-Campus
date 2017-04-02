@@ -80,15 +80,36 @@
 
       <hr class="divider" />
 
+      
+      <div class="related-reading">
+      {% if entry.relatedReading %}
+      <h3>Related Reading</h3>
+      {# <ul> #}
+        {% for related in entry.relatedReading %}
+        {# <li> #}
+          {% set relatedArticle = related.relatedArticle.first()  %}
+          <h4><a href="{{relatedArticle.url}}">{{relatedArticle.title}}</a> - <span class="genre">{{relatedArticle.genre.first()}}</span></h4>
+          {% if related.alternateSummary %}
+            <p>{{related.alternateSummary}}</p>
+          {% else %}
+            <p>{{relatedArticle.summary}}</p>
+          {% endif %}
+        {# </li> #}
+        {% endfor %}
+      {# </ul> #}
+      {% endif %}
+      
       {% set units = craft.entries.section('unitThemes').relatedTo(entry).first() %}
-
+      <hr class="divider" />
       <p>Read more literature from <a href="{{units.unitCountry.first().url}}">{{units.unitCountry.first().title}}.</a></p>
+
+
 		</article>
     
-{#     {% for relatedUnit in units %}
+{# % for relatedUnit in units %}
  <h5 class="no-print" style="text-align:right;"><strong><a href="{{ relatedUnit.url }}">Back to {{ relatedUnit.title }} &raquo;</a></strong></h5>
  <br />
-{% endfor %} #}
+{% endfor % #} 
 		<aside>
     {% include 'article/_tabs.html' %}
      <div class="script-only hidden">
