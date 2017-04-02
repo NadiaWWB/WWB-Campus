@@ -4,7 +4,14 @@
 {% set theme = craft.request.getParam('theme') %}
 {% set genre = craft.request.getParam('genre') %}
 {% set query = craft.request.getParam('q') %}
-{% set articles = craft.entries.section('article').order('postDate desc').limit(200) %}
+{% set articles = craft.entries({
+	section: 'article',
+	order: 'postDate desc',
+	limit: 200,
+	with: ['theme', 'genre', 'contributorAuthor']
+
+}) %}
+
 {% extends "_layout" %}
 {% block content %}
 	{% include 'global/_hero-static-image.html' %}
