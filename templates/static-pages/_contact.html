@@ -12,8 +12,9 @@
 
 
 
-<form accept-charset="UTF-8" action="https://formkeep.com/f/2b854b7b89eb" method="POST" role="form" style="max-width:60%;">
-  
+<form accept-charset="UTF-8" action="" method="POST" role="form" style="max-width:60%;">
+  <input type="hidden" name="action" value="utility/contact/submit">
+  <input type="hidden" name="redirect" value="">
   <p>
     <label>Name</label><br />
     <input tabindex="1" type="text" name="name" id="name" class="nice_form" size="40" maxlength="35" />
@@ -40,6 +41,8 @@
   </p>
     <label>Message</label><br />
       <textarea tabindex="3" name="message" class="nice_form" style="min-height:200px;"></textarea>
+
+      <p>{{craft.recaptcha.render()}}</p>
   <p>
     <button type="submit" class="pill tiny radius">Submit</button>
   </p>
