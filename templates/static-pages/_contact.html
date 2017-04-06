@@ -10,7 +10,7 @@
     <article class="hentry">
       <h1>{{ entry.title }}</h1>
 
-{% if error %}
+{% if error|default(false) %}
   <p>{{error}}</p>
 {% endif %}
 <form accept-charset="UTF-8" action="" method="POST" role="form" style="max-width:60%;">
