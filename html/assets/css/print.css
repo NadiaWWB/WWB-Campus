@@ -15,7 +15,7 @@ img.graphic-lit {
 
 /* print.css */
 body {
-  font: 12pt "myriad-pro", "Avenir 45 Book", "Lato", "Open Sans", "Helvetica Neue", Segoe, "Segoe UI", Arial, sans-serif;
+  font: 12pt "myriad-pro", "Avenir 45 Book","Lato", "Open Sans" ,"Helvetica Neue", Segoe, "Segoe UI", Arial, sans-serif;
   line-height: 1.5;
   color: #000;
   background: none; }
