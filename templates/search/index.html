@@ -26,6 +26,10 @@
 			{% endfor %}
 			</ul>
 
+			{% if not loop.last %}
+			<hr class="divider" />
+			{% endif %}
+
 		{% endfor %}
 
 		{% else %}
