@@ -6,43 +6,31 @@
 	<div id="start-of-content" class="content">
 		<h1>Search Results for: {{query}}</h1>
 
-		{% set results = craft.entries({
-		    search: {
-		        query: query,
-		        subLeft: true,
-		        subRight: true                
-		    }, 
-		    section: [
-		    	'article', 
-		    	'contributors', 
-		    	'extras', 
-		    	'news', 
-		    	'unitThemes', 
-		    	'units',
-		    	'teachingIdeas'
-		    ], 
-		    order: 'score'
-		}) %}
+		{% set results = craft.utility.search(query) %}
 
-		<ul>
-		{% for entry in results %}
+		{% if results|length %}
 
-            <li><a href="{{ entry.url }}"><strong>{{entry.section}}</strong> - {{ entry.title }}</a></li>
-		   
+		<p>Jump to: 
+
+		{% for result in results %}
+			<a href="#{{result.sectionHandle}}">{{result.section}}</a> {% if not loop.last %}| {% endif %}
 		{% endfor %}
-		 </ul>
 
-		{# {% set entriesBySection = results|group('section') %} #}
+		</p>
 
-		{# {% for section, entriesInSection in entriesBySection %}
-		    <h2>{{ section }}</h2>
+		{% for result in results %}
+			<h2 id="{{result.sectionHandle}}" >{{result.section}}</h2>
+			<ul>
+			{% for entry in result.entries %}
+				<li><a href="{{entry.url}}">{{entry.title}}</a></li>
+			{% endfor %}
+			</ul>
 
-		    <ul>
-		        {% for entry in entriesInSection %}
-		            <li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
-		        {% endfor %}
-		    </ul>
-		{% endfor %} #}
+		{% endfor %}
+
+		{% else %}
+			<p>No results found for: {{query}}.</p>
+		{% endif %}
 
 	</div>
 {% endblock %}
