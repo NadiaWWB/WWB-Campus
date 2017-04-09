@@ -8,10 +8,10 @@ class Utility_SearchService extends BaseApplicationComponent
 	public function search($query) 
 	{
 		$sections = array(
-			'article', 
+			'literature', 
 	    	'units',
 	    	'unitThemes',
-	    	'news',
+	    	'blog',
 	    	'teachingIdeas',
 	    	'extras', 
 	    	'contributors'

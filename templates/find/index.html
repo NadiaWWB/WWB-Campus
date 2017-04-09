@@ -5,7 +5,7 @@
 {% set genre = craft.request.getParam('genre') %}
 {% set query = craft.request.getParam('q') %}
 {% set articles = craft.entries({
-	section: 'article',
+	section: 'literature',
 	order: 'postDate desc',
 	limit: 200,
 	with: ['theme', 'genre', 'contributorAuthor']
