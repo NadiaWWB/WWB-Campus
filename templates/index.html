@@ -1,6 +1,6 @@
 {% extends "_layout" %}
 {% block content %}
-{% set news = craft.entries.section('news').limit(1).find() %}
+{% set news = craft.entries.section('blog').limit(1).find() %}
 {% set notices = craft.entries.section('notices').limit(1).order('RAND()').find() %}
 {% set units = craft.entries.section('units').order('postDate desc').find() %}
 {% set newArticles = craft.entries.section('article').order('postDate desc').limit(1).find() %}

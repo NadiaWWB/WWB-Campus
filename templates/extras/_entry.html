@@ -8,9 +8,9 @@
 <div id="start-of-content" class="content">
 	<div class="layout-2column-spread">
 		<aside>
-			<h5>Latest News</h5>
+			<h5>Latest Posts</h5>
 			<ul>
-				{% for entry in craft.entries.section('news').limit(10).find() %}
+				{% for entry in craft.entries.section('blog').limit(10).find() %}
 					<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
 
 					<br />
