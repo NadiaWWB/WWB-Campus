@@ -25,7 +25,7 @@ class Utility_SearchService extends BaseApplicationComponent
 
 			$criteria->section = $section;
 
-			$criteria->search = $query;
+			$criteria->search = "keywords:$query";
 
 			$theseResults = $criteria->find();
 
