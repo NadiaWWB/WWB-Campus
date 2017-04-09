@@ -3,7 +3,7 @@
 {% block content %}
 	{% include 'global/_hero-static-image.html' %}
 
-	<div id="start-of-content" class="content">
+	<div id="start-of-content" class="content search-results">
 		<h1>Search Results for: {{query}}</h1>
 
 		{% set results = craft.utility.search(query) %}
@@ -19,7 +19,7 @@
 		</p>
 
 		{% for result in results %}
-			<h2 id="{{result.sectionHandle}}" >{{result.section}}</h2>
+			<h4 id="{{result.sectionHandle}}" >{{result.section}}</h4>
 			<ul>
 			{% for entry in result.entries %}
 				<li><a href="{{entry.url}}">{{entry.title}}</a></li>
