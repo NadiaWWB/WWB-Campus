@@ -51,6 +51,13 @@ class AssetsFieldType extends BaseElementFieldType
 	 */
 	private $_failedFiles = array();
 
+    /**
+     * Results of the prepValueFromPost method when it was run.
+     *
+     * @var array
+     */
+	private $_prepValueFromPostResults = array();
+
 	// Public Methods
 	// =========================================================================
 
@@ -143,6 +150,14 @@ class AssetsFieldType extends BaseElementFieldType
 	 */
 	public function prepValueFromPost($value)
 	{
+		if (
+			($hash = $this->element ? spl_object_hash($this->element) : null) &&
+			isset($this->_prepValueFromPostResults[$hash])
+		)
+		{
+			return $this->_prepValueFromPostResults[$hash];
+		}
+
 		$dataFiles = array();
 
 		// Grab data strings
@@ -281,6 +296,11 @@ class AssetsFieldType extends BaseElementFieldType
 		// Make it look like the actual POST data contained these file IDs as well,
 		// so they make it into entry draft/version data
 		$this->element->setRawPostContent($this->model->handle, $fileIds);
+
+		if ($hash)
+		{
+			$this->_prepValueFromPostResults[$hash] = $fileIds;
+		}
 
 		return $fileIds;
 	}
@@ -710,7 +730,7 @@ class AssetsFieldType extends BaseElementFieldType
 					$folderId = $this->_createSubFolder($userFolder, $folderName);
 				}
 
-				IOHelper::ensureFolderExists(craft()->path->getAssetsTempSourcePath().$folderName);
+				IOHelper::ensureFolderExists(craft()->path->getAssetsTempSourcePath().$userFolder->path.'/'.$folderName);
 			}
 			else
 			{
