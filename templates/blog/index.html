@@ -6,7 +6,7 @@
 		<aside>
 			<h5>Latest Entries</h5>
 			<ul>
-				{% for entry in craft.entries.section('news').limit(10).find() %}
+				{% for entry in craft.entries.section('blog').limit(10).find() %}
 					<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
 
 					<br />
@@ -14,12 +14,12 @@
 			</ul>
 		</aside>
 		<div class="posts">
-			<form method="get" action="/news/search">
+			<form method="get" action="/blog/search">
 	  			<input type="text" name="query" placeholder="Search Blog Archive" style="" />
 	  			<input type="submit" value="Search">
   			</form>
 
-			{% for entry in craft.entries.section('news').limit(100).find() %}
+			{% for entry in craft.entries.section('blog').limit(100).find() %}
 				<article class="hentry boxed">
 					<h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
 					<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>

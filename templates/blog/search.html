@@ -4,7 +4,7 @@
 {% set query = craft.request.getParam('query') %}
 
 {% if query == '' %}
-	{% redirect "/news" %}
+	{% redirect "/blog" %}
 {% endif %}
 
 <div id="start-of-content" class="content">
@@ -12,7 +12,7 @@
 		<aside>
 			<h5>Latest Entries</h5>
 			<ul>
-				{% for entry in craft.entries.section('news').limit(10).find() %}
+				{% for entry in craft.entries.section('blog').limit(10).find() %}
 					<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
 
 					<br />
@@ -20,13 +20,13 @@
 			</ul>
 		</aside>
 		<div class="posts">
-			<form method="get" action="/news/search">
+			<form method="get" action="/blog/search">
 	  			<input type="text" name="query" placeholder="Search Blog Archive" style="" value="{{query}}" />
 	  			<input type="submit" value="Search">
   			</form>
 
 
-  			{% set entries = craft.entries.section('news')
+  			{% set entries = craft.entries.section('blog')
   				.limit(100)
   				.search(query)
   				.order('score')
