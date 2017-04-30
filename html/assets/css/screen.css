@@ -2548,5 +2548,16 @@ object, embed, iframe {
 .search-results .divider {
   margin: 1em 0; }
 
+.posts form {
+  margin-bottom: 2em;
+  widows: 100%; }
+  .posts form input[type='text'] {
+    display: inline-block;
+    padding: .4em .5em;
+    font-size: 1.1em;
+    width: 60%; }
+  .posts form input[type='submit'] {
+    margin-top: -5px; }
+
 body {
   background-color: #a2a69d; }

@@ -1,6 +1,12 @@
 {% extends "_layout" %}
 {% block content %}
 {% include 'global/_hero-static-image.html' %}
+{% set query = craft.request.getParam('query') %}
+
+{% if query == '' %}
+	{% redirect "/blog" %}
+{% endif %}
+
 <div id="start-of-content" class="content">
 	<div class="layout-2column-spread">
 		<aside>
@@ -15,19 +21,27 @@
 		</aside>
 		<div class="posts">
 			<form method="get" action="/blog/search">
-	  			<input type="text" name="query" placeholder="Search Blog Archive" style="" />
+	  			<input type="text" name="query" placeholder="Search Blog Archive" style="" value="{{query}}" />
 	  			<input type="submit" value="Search">
   			</form>
-			{% for entry in craft.entries.section('blog').limit(100).find() %}
+
+
+  			{% set entries = craft.entries.section('blog')
+  				.limit(100)
+  				.search(query)
+  				.order('score')
+  				.find() 
+  			%}
+
+			{% for entry in entries %}
 				<article class="hentry boxed">
 					<h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
 					<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
 					{{ entry.body.getPage(1) }}
 					{% if entry.body.getTotalPages() > 1 %}
-			<p><a href="{{ entry.url }}">Continue reading</a></p>
-			{% endif %}
+						<p><a href="{{ entry.url }}">Continue reading</a></p>
+					{% endif %}
 				</article>
-
 			{% endfor %}
 		</div>
 	</div>
