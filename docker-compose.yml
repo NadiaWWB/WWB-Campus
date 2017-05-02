@@ -20,6 +20,7 @@ services:
     # is /etc/wwb
     volumes:
       - ./craft/plugins:/var/www/craft/plugins
+      - ./craft/config:/var/www/craft/config
       - ./craft/storage:/var/www/craft/storage
       - ./templates:/var/www/templates
       - ./html:/var/www/html
