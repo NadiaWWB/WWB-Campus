@@ -1,0 +1,53 @@
+{% extends "_layout" %}
+{% if not currentUser %}
+    {% redirect '/members/login' %}
+{% endif %}
+{% block content %}
+{% include 'global/_hero-static-image.html' %}
+<div id="start-of-content" class="content">
+
+	<article class="hentry">
+		<h1>Profile</h1>
+
+        <form method="post" accept-charset="UTF-8" class="login_form">
+            {{ getCsrfInput() }}
+            <input type="hidden" name="action" value="users/saveUser">
+            <input type="hidden" name="redirect" value="{{siteUrl}}">
+            <input type="hidden" name="userId" value="{{ currentUser.id }}">
+
+            <p>
+                <label for="name">Full Name</label><br />
+                <input type="text" id="name" name="fields[profileName]" value="{{ currentUser.profileName }}">
+            </p>
+
+            <p>
+                <label for="schoolName">School Name</label><br />
+                <input type="text" id="schoolName" name="fields[schoolName]" value="{{ currentUser.schoolName }}">
+            </p>
+
+            <p>
+                <label for="schoolLevel">School Level</label><br />
+                <input type="text" id="schoolLevel" name="fields[schoolLevel]" value="{{ currentUser.schoolLevel }}">
+            </p>
+
+            <p>
+                <label for="schoolType">School Type</label><br />
+                <input type="text" id="schoolType" name="fields[schoolType]" value="{{ currentUser.schoolType }}">
+            </p>
+
+            <p>
+                <label for="schoolCity">School City</label><br />
+                <input type="text" id="schoolCity" name="fields[schoolCity]" value="{{ currentUser.schoolCity }}">
+            </p>
+
+            <p>
+                <label for="schoolCountry">School Country</label><br />
+                <input type="text" id="schoolCountry" name="fields[schoolCountry]" value="{{ currentUser.schoolCountry }}">
+            </p>
+
+            <input type="submit" value="Save Profile">
+        </form>
+
+	</article>
+
+{% endblock %}
