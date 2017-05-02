@@ -8,5 +8,9 @@
  */
 
 return array(
-	'devMode' => true
+	'autoLoginAfterAccountActivation' => true,
+	'activateAccountSuccessPath' => 'members/profile',
+	'devMode' => true,
+	'deferPublicRegistrationPassword' => true,
+	'useEmailAsUsername' => true
 );

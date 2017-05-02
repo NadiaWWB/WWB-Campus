@@ -2556,5 +2556,13 @@ object, embed, iframe {
   .posts form input[type='submit'] {
     margin-top: -5px; }
 
+.login_form input[type='text'], .login_form input[type='password'] {
+  display: inline-block;
+  padding: .4em .5em;
+  width: 50%; }
+
+.login_form input[type='submit'] {
+  margin-top: -5px; }
+
 body {
   background-color: #a2a69d; }
