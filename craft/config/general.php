@@ -12,5 +12,6 @@ return array(
 	'activateAccountSuccessPath' => 'members/profile',
 	'devMode' => true,
 	'deferPublicRegistrationPassword' => true,
-	'useEmailAsUsername' => true
+	'loginPath' => 'members/login',
+	'useEmailAsUsername' => true,
 );
