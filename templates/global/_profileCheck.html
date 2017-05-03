@@ -1,0 +1,12 @@
+{% if craft.request.lastSegment != 'profile' and currentUser %}
+    {% if 
+        currentUser.profileName == '' or 
+        currentUser.schoolName == '' or
+        currentUser.schoolLevel == '' or
+        currentUser.schoolType == '' or
+        currentUser.schoolCity == '' or
+        currentUser.schoolCountry == ''
+    %}
+        {% redirect url('members/profile') %}
+    {% endif %}
+{% endif %}
