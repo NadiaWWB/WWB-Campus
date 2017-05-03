@@ -1,7 +1,5 @@
 {% extends "_layout" %}
-{% if not currentUser %}
-    {% redirect '/members/login' %}
-{% endif %}
+{% requireLogin %}
 {% block content %}
 {% include 'global/_hero-static-image.html' %}
 <div id="start-of-content" class="content">
