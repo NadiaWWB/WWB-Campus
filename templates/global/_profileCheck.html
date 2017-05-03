@@ -1,4 +1,8 @@
-{% if craft.request.lastSegment != 'profile' and currentUser %}
+{% if not currentUser %}
+    {% redirect url('members/login') %}
+{% endif %}
+
+{% if craft.request.lastSegment != 'profile' %}
     {% if 
         currentUser.profileName == '' or 
         currentUser.schoolName == '' or
