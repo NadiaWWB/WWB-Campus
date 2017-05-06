@@ -16,17 +16,22 @@
             <input type="hidden" name="userId" value="{{ currentUser.id }}">
 
             <p>
-                <label for="name">Full Name</label><br />
-                <input type="text" id="name" name="fields[profileName]" value="{{ currentUser.profileName }}">
+                <label for="firstName">First Name</label><br />
+                <input type="text" id="firstName" name="fields[profileFirstName]" value="{{ currentUser.profileFirstName }}">
             </p>
 
             <p>
-                <label for="schoolName">School Name</label><br />
+                <label for="lastName">Last Name</label><br />
+                <input type="text" id="lastName" name="fields[profileLastName]" value="{{ currentUser.profileLastName }}">
+            </p>
+
+            <p>
+                <label for="schoolName">School, Library, or Organization Name</label><br />
                 <input type="text" id="schoolName" name="fields[schoolName]" value="{{ currentUser.schoolName }}">
             </p>
 
             <p>
-                <label for="schoolLevel">School Level</label><br />
+                <label for="schoolLevel">School Level (if applicable)</label><br />
                 <select id="schoolLevel" name="fields[schoolLevel]">
                     <option value="">Select</option>
                     <option {% if currentUser.schoolLevel == 'primary'%} selected {% endif %} value="primary">Primary</option>
@@ -34,26 +39,28 @@
                     <option {% if currentUser.schoolLevel == 'secondary'%} selected {% endif %} value="secondary">Secondary</option>
                     <option {% if currentUser.schoolLevel == 'college/post secondary'%} selected {% endif %} value="college/post secondary">College/Post-Secondary</option>
                     <option {% if currentUser.schoolLevel == 'graduate'%} selected {% endif %} value="graduate">Graduate</option>
+                    <option {% if currentUser.schoolLevel == 'n/a'%} selected {% endif %} value="n/a">N/A</option>
                 </select>
             </p>
 
             <p>
-                <label for="schoolType">School Type</label><br />
+                <label for="schoolType">School Type (if applicable)</label><br />
                 <select id="schoolType" name="fields[schoolType]">
                     <option value="">Select</option>
                     <option {% if currentUser.schoolType == 'public'%} selected {% endif %} value="public">Public</option>
                     <option {% if currentUser.schoolType == 'private'%} selected {% endif %} value="private">Private</option>
+                    <option {% if currentUser.schoolLevel == 'n/a'%} selected {% endif %} value="n/a">N/A</option>
                 </select>
             </p>
 
             <p>
-                <label for="schoolCity">School City</label><br />
-                <input type="text" id="schoolCity" name="fields[schoolCity]" value="{{ currentUser.schoolCity }}">
+                <label for="city">City</label><br />
+                <input type="text" id="city" name="fields[city]" value="{{ currentUser.city }}">
             </p>
 
             <p>
-                <label for="schoolCountry">School Country</label><br />
-                <input type="text" id="schoolCountry" name="fields[schoolCountry]" value="{{ currentUser.schoolCountry }}">
+                <label for="country">Country</label><br />
+                <input type="text" id="country" name="fields[country]" value="{{ currentUser.country }}">
             </p>
 
             <input type="submit" value="Save Profile">
