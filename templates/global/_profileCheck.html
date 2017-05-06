@@ -2,10 +2,9 @@
 
 {% if craft.request.lastSegment != 'profile' %}
     {% if 
-        currentUser.profileName == '' or 
+        currentUser.profileFirstName == '' or
+        currentUser.profileLastName == '' or 
         currentUser.schoolName == '' or
-        currentUser.schoolLevel == '' or
-        currentUser.schoolType == '' or
         currentUser.schoolCity == '' or
         currentUser.schoolCountry == ''
     %}
