@@ -8,10 +8,16 @@
  */
 
 return array(
-	'autoLoginAfterAccountActivation' => true,
-	'activateAccountSuccessPath' => 'members/profile',
-	'devMode' => true,
-	'deferPublicRegistrationPassword' => true,
-	'loginPath' => 'members/login',
-	'useEmailAsUsername' => true,
+	'*' => array(
+		'autoLoginAfterAccountActivation' => true,
+		'activateAccountSuccessPath' => 'members/profile',
+		'devMode' => true,
+		'deferPublicRegistrationPassword' => true,
+		'loginPath' => 'members/login',
+		'useEmailAsUsername' => true,
+		'siteUrl' => 'http://wwb-campus-dev.us-east-1.elasticbeanstalk.com/'
+	),
+	'wwb-docker.localhost' => array(
+		'siteUrl' => 'http://wwb-docker.localhost'
+	)	
 );
