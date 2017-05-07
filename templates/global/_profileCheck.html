@@ -1,0 +1,13 @@
+{% requireLogin %}
+
+{% if craft.request.lastSegment != 'profile' %}
+    {% if 
+        currentUser.profileFirstName == '' or
+        currentUser.profileLastName == '' or 
+        currentUser.schoolName == '' or
+        currentUser.schoolCity == '' or
+        currentUser.schoolCountry == ''
+    %}
+        {% redirect url('members/profile') %}
+    {% endif %}
+{% endif %}

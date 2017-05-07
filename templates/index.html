@@ -1,6 +1,6 @@
 {% extends "_layout" %}
 {% block content %}
-{% set news = craft.entries.section('blog').limit(1).find() %}
+{% set blog = craft.entries.section('blog').limit(1).find() %}
 {% set notices = craft.entries.section('notices').limit(1).order('RAND()').find() %}
 {% set units = craft.entries.section('units').order('postDate desc').find() %}
 {% set newArticles = craft.entries.section('article').order('postDate desc').limit(1).find() %}
@@ -47,7 +47,7 @@
 	{# <aside style="margin-top:3.25em;">
 		<h2>For Educators</h2> #}
 			{# <ul>
-				{% for entry in news %}
+				{% for entry in blog %}
 					<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
 				{% endfor %}
 			</ul> #}
@@ -57,7 +57,7 @@
 	</aside> #}
 	<aside style="margin-top:3.25em;">
 		<h2>Latest Update</h2>
-		{% for entry in news %}
+		{% for entry in blog %}
 			<h4><a href="{{ entry.url }}">{{ entry.title }}</a></h4>
 		{% endfor %}
 	</aside>

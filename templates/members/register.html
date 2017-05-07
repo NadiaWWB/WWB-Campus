@@ -1,0 +1,51 @@
+{% extends "_layout" %}
+
+{% block content %}
+{% include 'global/_hero-static-image.html' %}
+<div id="start-of-content" class="content">
+
+	<article class="hentry">
+		<h1>Register with WWB Campus</h1>
+
+		<p>Educators, complete this simple form to get access to dozens of teaching ideas, assignments, and classroom activities.</p>
+
+		<p>If you already have an account, <a href="{{url('members/login')}}">login here</a>.</p>
+
+		<form accept-charset="UTF-8" action="" method="POST" class="login_form" role="form">
+			{{ getCsrfInput() }}
+		  <input type="hidden" name="action" value="users/saveUser">
+		  <input type="hidden" name="redirect" value="{{url('members/register-success')}}">
+
+			{% macro errorList(errors) %}
+				{% if errors %}
+					<ul class="errors">
+					{% for error in errors %}
+						<li>{{ error }}</li>
+					{% endfor %}
+				</ul>	
+				{% endif %}
+			{% endmacro %}
+
+			{% from _self import errorList %}
+
+		  <p>
+		    <label for="email">Email Address</label><br />
+		    <input id="email" type="text" name="email"
+		        {%- if account is defined %} value="{{ account.email }}"{% endif %}>
+		    <span class="error" id="emailError" style="display: none;">Please use a valid email address</span>
+		  </p>
+
+			{% if account is defined %}
+				{{ errorList(account.getErrors('email')) }}
+			{% endif %}
+
+	      <p>{{craft.recaptcha.render()}}</p>
+
+		  <p>
+				<input type="submit" class="pill tiny radius" value="Register">
+		  </p>
+		</form>
+
+	</article>
+
+{% endblock %}

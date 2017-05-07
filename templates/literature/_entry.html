@@ -75,7 +75,7 @@
 			</header>
 			{{ entry.body }}
       {% if graphic | length %}
-       {% include 'article/_graphic-lit.html' %}
+       {% include 'literature/_graphic-lit.html' %}
       {% endif %}
 
       <hr class="divider" />
@@ -111,7 +111,7 @@
  <br />
 {% endfor % #} 
 		<aside>
-    {% include 'article/_tabs.html' %}
+    {% include 'literature/_tabs.html' %}
      <div class="script-only hidden">
             <button class="button small no-print" style="float:right;" onclick="printDivTeacingIdeas();">Print Teaching Ideas</button>
             <button class="button small no-print" style="float:right;" onclick="printDivBios();">Print Bios</button>

@@ -1,0 +1,5 @@
+{% if currentUser %}
+    {% redirect '/members/profile' %}
+{% else %}
+	{% redirect '/members/register' %}
+{% endif %}
