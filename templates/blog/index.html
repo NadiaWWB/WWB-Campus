@@ -18,7 +18,6 @@
 	  			<input type="text" name="query" placeholder="Search Blog Archive" style="" />
 	  			<input type="submit" value="Search">
   			</form>
-
 			{% for entry in craft.entries.section('blog').limit(100).find() %}
 				<article class="hentry boxed">
 					<h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
