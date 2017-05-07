@@ -1,0 +1,37 @@
+<span id="teaching-ideas-content">
+
+  {% if not currentUser %}
+    <p>To access Teaching Ideas, please <a href="{{url('members/register')}}">register</a> or <a href="{{url('members/login')}}">login</a> to WWB-Campus.</p>
+  {% else %}
+
+  <span class="print-only">for <em>{{ entry.title }}</em><br />{{ entry.url }}</span>
+  {% for teachingTip in teachingTips %}
+    {% if teachingTip.type == "tip" %}
+      {# <h1 class="print-only{% if not loop.first %} section-break{% endif %}">Teaching Ideas for {{ entry.title }}</h1> #}
+      <h4 class="section-title">{{ teachingTip.tiptitle }}</h4>
+      {{ teachingTip.tip }}
+ 
+      {% if teachingTip.readingStandard|length %}
+        <hr class="space" />
+        <em>Addresses these Common Core Anchor Standards for Reading: </em> {# TODO: Output Group Name #}
+        {% for readingStandard in teachingTip.readingStandard %}
+          {{readingStandard.title }}{% if not loop.last %}, {% endif %}{% endfor %}{% if not teachingTip.nysCcs|length %}.{% endif %}
+      {% endif %}
+
+      {% if teachingTip.nysCcs|length %} <em>& NYS CCSS: </em>
+        {% for nysCcs in teachingTip.nysCcs %}{{nysCcs.title }}{% if not loop.last %}, {% else %}. {% endif %}{% endfor %}
+      {% endif %}
+      
+      {% if teachingTip.writingStandard|length %}
+        <em>Common Core Anchor Standards for Writing: </em>
+        {% for writingStandard in teachingTip.writingStandard %}
+          {{writingStandard.title }}{% if not loop.last %}, {% else %}. {% endif %}
+        {% endfor %}
+      {% endif %}
+  
+    {% endif %}
+  <hr />
+{% endfor %}
+
+{% endif %}
+</span>

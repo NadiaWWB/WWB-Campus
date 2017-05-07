@@ -1,7 +1,7 @@
 {% include 'global/_profileCheck' %}
 {% set intro = entry.introduction %}
 {# {% set teachingTips = craft.entries.section('units').order('postDate desc').find() %} #}
-{% set articles = craft.entries.section('article').order('postDate desc').find() %}
+{% set literatures = craft.entries.section('literature').order('postDate desc').find() %}
 
 {% extends "_layout" %}
 {% block content %}
@@ -15,15 +15,15 @@
 
 	<div class="layout-2column">
 		<article class="hentry">
-				{% for article in articles %}
+				{% for literature in literatures %}
 
 
 
 					<ul class="item list-filterTK">
-						{% for teachingTip in article.teachingTips %}
+						{% for teachingTip in literature.teachingTips %}
 							{% if teachingTip.type == "tip" %}
                 <hr />
-									from <h3 style="display:inline-block;"><a href="{{article.url}}">{{article.title}}</a></h3>
+									from <h3 style="display:inline-block;"><a href="{{literature.url}}">{{literature.title}}</a></h3>
 									<h4>{{teachingTip.tiptitle}}</h4>
 
 

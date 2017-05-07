@@ -1,5 +1,5 @@
   {% cache for 6 hours %}
-  {% for entry in  articles %}
+  {% for entry in  literatures %}
     {% set relatedThemes = entry.theme[0] ?? null %}
     {% set genre = entry.genre[0] ?? null %}
     {% set authors = entry.contributorAuthor %}

@@ -4,8 +4,8 @@
 {% set theme = craft.request.getParam('theme') %}
 {% set genre = craft.request.getParam('genre') %}
 {% set query = craft.request.getParam('q') %}
-{% set articles = craft.entries({
-	section: 'article',
+{% set literature = craft.entries({
+	section: 'literature',
 	order: 'postDate desc',
 	limit: 200,
 	with: ['theme', 'genre', 'contributorAuthor']
@@ -38,7 +38,7 @@
 				{% block searchlabel %}
 					<hr class="divider" />
 				{% endblock %}
-				{% if articles | length %}
+				{% if literature | length %}
 					<ul id="container" class="grid filtered-list list-filter list">
 						{% include "find/_articles.html" %}
 					</ul>

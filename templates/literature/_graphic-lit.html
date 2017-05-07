@@ -1,0 +1,36 @@
+ <div id="graphic-lit"
+          class="cycle-slideshow"
+          data-cycle-pause-on-hover="true"
+          data-cycle-slides="img"
+          data-cycle-fx="scrollHorz"
+          data-cycle-tmpl-regex="\[\[((\.)?.*?)\]\]"
+          data-cycle-paused=true
+          data-cycle-pager="#custom-pager"
+          data-cycle-pager-template="<button class='button'><a href=#> [[slideNum]] </a></button>"
+          data-cycle-prev="#prev"
+          data-cycle-hide-non-active=true
+          data-cycle-next="#next"
+          data-cycle-caption="#custom-caption"
+          data-cycle-caption-template="[[cycleTitle]]">
+  {% for images in graphic %}
+    {# TODO: Add Image Transforms here, display, to fit max width of article box #}
+    {# {% set image = images.image.first() %} #}
+    {% for image in images.image %}
+      {% if image %}
+        <img class="graphic-lit" src="{{ image.getUrl() }}" data-cycle-title="{{ images.caption }}">
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  </div>
+  <div id="graphic-lit-for-print" class="print-only">
+  {% for images in graphic %}
+    {# TODO: Add Image Transforms here, display, to fit max width of article box #}
+    {# {% set image = images.image.first() %} #}
+    {% for image in images.image %}
+      {% if image %}
+        <img class="graphic-lit" style="width:100%;" data-cycle-title="{{ images.caption }}" src="{{ image.getUrl() }}" alt="">
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  </div>
+    <div class="cycle-caption"></div>

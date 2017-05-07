@@ -1,0 +1,8 @@
+<span id="playlist" >
+  <h6 class="print-only">Links available online only</h6>
+  {% for playlist in playlists %}
+    {% if playlist.type == "media" %}
+      {{ playlist.media }} <hr />
+    {% endif %}
+  {% endfor %}
+</span>
