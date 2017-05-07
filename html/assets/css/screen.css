@@ -1354,6 +1354,12 @@ li.nav-sidebar-item {
   margin-bottom: 1em;
   margin-left: 1.5em; }
 
+.tab-content ul.content-preview {
+  margin-left: 0em; }
+  .tab-content ul.content-preview li {
+    list-style: none;
+    margin-left: 0em; }
+
 .accordion .submenu ul li, article ul li, .tab-content ul li {
   list-style-type: circle;
   margin-left: 1em;

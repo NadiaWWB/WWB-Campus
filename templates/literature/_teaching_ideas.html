@@ -1,7 +1,12 @@
 <span id="teaching-ideas-content">
 
   {% if not currentUser %}
-    <p>To access Teaching Ideas, please <a href="{{url('members/register')}}">register</a> or <a href="{{url('members/login')}}">login</a> to WWB-Campus.</p>
+    <ul class="content-preview">
+    {% for teachingTip in teachingTips %}
+      <li>{{teachingTip.tiptitle}}</li>
+    {% endfor %}
+    </ul>
+    <p>To access these Teaching Ideas, please <a href="{{url('members/register')}}">register</a> or <a href="{{url('members/login')}}">login</a> to WWB-Campus.</p>
   {% else %}
   <span class="print-only">for <em>{{ entry.title }}</em><br />{{ entry.url }}</span>
   {% for teachingTip in teachingTips %}
