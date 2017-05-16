@@ -19,16 +19,16 @@
 
 <li class="nav-item" tabindex="7" data-ga-click="Header, go to explore, text:profile">
 	{% if currentUser %}
-		<a href="/members/profile">My Profile</a>
+		<a href="/members/profile">Profile</a>
 	{% else %}
 		<a href="/members/">Login/Register</a>
 	{% endif %}
 </li>
 
 {% if currentUser %}
-	<!--<li class="nav-item" tabindex="8" data-ga-click="Header, go to explore, text:logout">
+	<li class="nav-item" tabindex="8" data-ga-click="Header, go to explore, text:logout">
 		<a href="{{url('logout')}}">Logout</a>
-	</li>-->
+	</li>
 {% endif %}
 
 {# getSegment(3) and blog/category examples show synching up current tag's name with URL

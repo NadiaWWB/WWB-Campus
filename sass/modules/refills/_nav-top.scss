@@ -130,8 +130,8 @@ header.navigation {
       font-weight: 400;
 
       @include media ($horizontal-bar-mode) {
-        padding-right: .75em;
-        padding-left: .75em;
+        padding-right: .5em;
+        padding-left: .5em;
       }
 
 

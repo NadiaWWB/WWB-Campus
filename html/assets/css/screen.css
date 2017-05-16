@@ -2218,8 +2218,8 @@ header.navigation {
       font-weight: 400; }
       @media screen and (min-width: 53.75em) {
         header.navigation ul li a {
-          padding-right: .75em;
-          padding-left: .75em; } }
+          padding-right: .5em;
+          padding-left: .5em; } }
       header.navigation ul li a:hover {
         color: #f8971d; }
   header.navigation .active-nav-item a, header.navigation .active {
