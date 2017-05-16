@@ -12,7 +12,14 @@
         <form method="post" accept-charset="UTF-8" class="login_form">
             {{ getCsrfInput() }}
             <input type="hidden" name="action" value="users/saveUser">
-            <input type="hidden" name="redirect" value="{{url('members/profile')}}">
+            {% set redirect = craft.request.getQuery('redirect') %}
+
+            {% if redirect != ''%}
+                <input type="hidden" name="redirect" value="{{url(redirect)}}">
+            {% else %}
+                <input type="hidden" name="redirect" value="{{url('members/profile')}}">
+            {% endif %}
+            
             <input type="hidden" name="userId" value="{{ currentUser.id }}">
 
             <p>

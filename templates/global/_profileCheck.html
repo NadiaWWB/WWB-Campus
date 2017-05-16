@@ -5,9 +5,9 @@
         currentUser.profileFirstName == '' or
         currentUser.profileLastName == '' or 
         currentUser.schoolName == '' or
-        currentUser.schoolCity == '' or
-        currentUser.schoolCountry == ''
+        currentUser.city == '' or
+        currentUser.country == ''
     %}
-        {% redirect url('members/profile') %}
+        {% redirect url('members/profile?redirect='~craft.request.getPath()) %}
     {% endif %}
 {% endif %}

@@ -1,10 +1,10 @@
-{% include 'global/_profileCheck' %}
 {% set intro = entry.introduction %}
 {# {% set teachingTips = craft.entries.section('units').order('postDate desc').find() %} #}
 {% set literatures = craft.entries.section('literature').order('postDate desc').find() %}
 
 {% extends "_layout" %}
 {% block content %}
+{% include 'global/_profileCheck' %}
 
 {% include 'global/_hero-static-image.html' %}
 
