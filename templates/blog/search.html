@@ -33,6 +33,10 @@
   				.find() 
   			%}
 
+			{% if craft.request.getParam('query') %}
+				<h1>Search Results for "{{craft.request.getParam('query')}}"</h1>
+			{% endif %}
+
 			{% for entry in entries %}
 				<article class="hentry boxed">
 					<h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
