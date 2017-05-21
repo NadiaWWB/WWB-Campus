@@ -6,7 +6,7 @@
     <h5>Searched for {{ query }}
       <br />
       <small>
-        {{ articles | length }} results
+        {{ literatures | length }} results
         <a href="/find/#results">reset search</a>
       </small>
     </h5>
@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block content %}
-{% set articles = craft.entries({
+{% set literatures = craft.entries({
     section: 'literature',
     order: 'score',
     search: {
