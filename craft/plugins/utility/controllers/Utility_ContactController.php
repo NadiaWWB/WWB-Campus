@@ -22,17 +22,29 @@ class Utility_ContactController extends BaseController
 		$message = craft()->request->getPost('message');
 		
 		if($verified)
-		{			
+		{	
+			$emailSent = craft()->utility_contact->sendContact($name, $email, $newsletter, $subject, $message);
+
+			if(!$emailSent)
+			{
+				$this->redirectOnError($name, $email, $subject, $message);
+			}
+
 			$this->redirect('contact/thank-you');
 
 		} else {
-			craft()->urlManager->setRouteVariables(array(
-				'name' => $name,
-				'email' => $email,
-				'subject' => $subject,
-				'message' => $message,
-				'error' => 'Sorry, an error occured when submitting your comment. Please try again.'
-			));
+			$this->redirectOnError($name, $email, $subject, $message);
 		}
     }
+
+	private function redirectOnError($name, $email, $subject, $message)
+	{
+		craft()->urlManager->setRouteVariables(array(
+			'name' => $name,
+			'email' => $email,
+			'subject' => $subject,
+			'message' => $message,
+			'error' => 'Sorry, an error occured when submitting your comment. Please try again.'
+		));
+	}
 }
