@@ -7,8 +7,6 @@ class Utility_ContactService extends BaseApplicationComponent
     public function sendContact($name, $emailAddress, $newsletter, $subject, $message)
     {
 
-        // $body = "$subject.'\n\n'.$message;
-
         if($newsletter != NULL)
         {
             $this->subscribe($emailAddress);
@@ -25,7 +23,7 @@ class Utility_ContactService extends BaseApplicationComponent
 
         $email = new EmailModel();
 
-        $email->toEmail = 'aaron.berkowitz@me.com';
+        $email->toEmail = 'nadia@wordswithoutborders.org';
 
         $email->subject = 'New Contact Form Submission';
 

@@ -88,11 +88,15 @@
         {% for related in entry.relatedReading %}
         {# <li> #}
           {% set relatedArticle = related.relatedArticle.first()  %}
+          {% if relatedArticle %}
           <h4><a href="{{relatedArticle.url}}">{{relatedArticle.title}}</a> - <span class="genre">{{relatedArticle.genre.first()}}</span></h4>
+          {% endif %}
           {% if related.alternateSummary %}
             <p>{{related.alternateSummary}}</p>
           {% else %}
+            {% if relatedArticle %}
             <p>{{relatedArticle.summary}}</p>
+            {% endif %}
           {% endif %}
         {# </li> #}
         {% endfor %}
