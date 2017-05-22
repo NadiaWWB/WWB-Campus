@@ -22,5 +22,18 @@ class UtilityPlugin extends BasePlugin
     {
         return 'github.com/aberkie';
     }
+
+    public function init()
+    {
+        craft()->on('users.beforeSaveUser', function(Event $event) {
+            $subscribe = $event->params['user']->newsletterSubscribe;
+            $email = $event->params['user']->email;
+
+            if($subscribe != NULL) 
+            {
+                craft()->mailchimpSubscribe->subscribe($email, '');
+            }
+        });
+    }
 }
 

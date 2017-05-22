@@ -35,6 +35,6 @@ class Utility_ContactService extends BaseApplicationComponent
 
     public function subscribe($email) 
     {
-        return;
+        $subscribe = craft()->mailchimpSubscribe->subscribe($email, '');
     }
 }
