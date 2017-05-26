@@ -14,6 +14,11 @@
 		<form accept-charset="UTF-8" action="" method="POST" class="login_form" role="form">
 			{{ getCsrfInput() }}
 		  <input type="hidden" name="action" value="users/login">
+			{% set redirect = craft.request.getQuery('redirect') %}
+
+			{% if redirect != ''%}
+					<input type="hidden" name="redirect" value="{{url(redirect)}}">
+			{% endif %}
 
 		  <p>
 		    <label for="loginName">Email Address</label><br />

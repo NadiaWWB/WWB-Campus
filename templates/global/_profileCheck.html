@@ -1,4 +1,6 @@
-{% requireLogin %}
+{% if not currentUser %}
+    {% redirect url('members/login?redirect='~craft.request.getPath()) %}
+{% endif %}
 
 {% if craft.request.lastSegment != 'profile' %}
     {% if 
