@@ -6,7 +6,7 @@
       <li>{{teachingTip.tiptitle}}</li>
     {% endfor %}
     </ul>
-    <p>To access these Teaching Ideas, please <a href="{{url('members/register')}}">register</a> or <a href="{{url('members/login')}}">login</a> to WWB-Campus.</p>
+    <p>To access these Teaching Ideas, please <a href="{{url('members/register')}}">register</a> or <a href="{{url('members/login?redirect='~craft.request.getPath())}}">login</a> to WWB-Campus.</p>
   {% else %}
   <span class="print-only">for <em>{{ entry.title }}</em><br />{{ entry.url }}</span>
   {% for teachingTip in teachingTips %}
