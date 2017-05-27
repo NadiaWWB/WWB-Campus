@@ -21,7 +21,7 @@ return array(
 		'siteUrl' => 'http://wwb-docker.localhost'
 	),
 	'wwb-campus.org' => array(
-		'siteUrl' => 'http://www.wwb-campus.org/',
+		'siteUrl' => 'http://wwb-campus.org/',
 		'devMode' => false
 	)
 );
