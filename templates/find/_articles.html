@@ -1,4 +1,4 @@
-  {#% cache for 6 hours %#}
+  {% cache using key "search"~query|default('') for 12 hours %}
   {% for entry in literatures %}
     {% set relatedThemes = entry.theme[0] ?? null %}
     {% set genre = entry.genre[0] ?? null %}
@@ -24,6 +24,6 @@
       </a>
     </li>
   {% endfor %}
-  {#% endcache %#}
+  {% endcache %}
 
 
