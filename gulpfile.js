@@ -50,7 +50,7 @@ gulp.task('scripts-concat', function() {
          './bower_components/isotope/dist/isotope.pkgd.min.js',
          './html/assets/js/scripts.min.js'
       ])
-    .pipe(concat('scripts-concatenated-150524-090343.min.js')) //change this to change the script found in 'templates/global/_scripts.html'
+    .pipe(concat('scripts-concatenated.min.js')) //change this to change the script found in 'templates/global/_scripts.html'
     .pipe(gulp.dest(JSDest))
 });
 
