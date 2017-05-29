@@ -29,6 +29,8 @@ $(document).ready(function() {
     // set filter for Isotope
     $grid.isotope({ filter: filterValue });
 
+    console.log('script updated');
+
     location.hash = 'filter=' + encodeURIComponent(filterValue);
 
   });
