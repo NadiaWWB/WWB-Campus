@@ -14,8 +14,14 @@ return array(
 		'devMode' => true,
 		'deferPublicRegistrationPassword' => true,
 		'loginPath' => 'members/login',
-		'useEmailAsUsername' => true,
+		'useEmailAsUsername' => true
+	),
+	'wwb-campus-dev.us-east-1.elasticbeanstalk.com' => array(
 		'siteUrl' => 'http://wwb-campus-dev.us-east-1.elasticbeanstalk.com/'
+	),
+	'wwb-campus-prod.us-east-1.elasticbeanstalk.com' => array(
+		'siteUrl' => 'http://wwb-campus.org',
+		'devMode' => false
 	),
 	'wwb-docker.localhost' => array(
 		'siteUrl' => 'http://wwb-docker.localhost'
