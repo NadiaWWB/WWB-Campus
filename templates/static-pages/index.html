@@ -13,7 +13,7 @@
 {% extends "_layout" %}
 {% block content %}
 	<div id="start-of-content" class="content">
-	{% for entry in craft.entries.section('news').find() %}
+	{% for entry in craft.entries.section('blog').find() %}
 		<article>
 			<h3><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
 			<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>

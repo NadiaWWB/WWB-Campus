@@ -1,6 +1,6 @@
 {# DEPRECATING #}
 {% if entry is defined %}
-	{% if entry.section.handle == 'article' %}
+	{% if entry.section.handle == 'literature' %}
 		<ul>
 		{% for relatedTheme in relatedThemes %}
 		{% set ThemeUnit = relatedTheme.unitCountry.first %}
@@ -13,7 +13,7 @@
 	{% else %}
 		<ul>
 			<li>Latest: </li>
-			{% for items in craft.entries.section('news').limit(1).find() %}
+			{% for items in craft.entries.section('blog').limit(1).find() %}
 				<li><a href="{{ items.url }}">{{ items.title }}</a></li>
 			{% endfor %}
 		</ul>
@@ -21,7 +21,7 @@
 {% elseif entry is not defined %}
 	<ul>
 		<li>Latest: </li>
-		{% for items in craft.entries.section('news').limit(1).find() %}
+		{% for items in craft.entries.section('blog').limit(1).find() %}
 			<li><a href="{{ items.url }}">{{ items.title }}</a></li>
 		{% endfor %}
 	</ul>

@@ -27,7 +27,9 @@ $(document).ready(function() {
     // combine filters
     var filterValue = concatValues(filters);
     // set filter for Isotope
-    ///////////////////////////////////$grid.isotope({ filter: filterValue });
+    $grid.isotope({ filter: filterValue });
+
+    console.log('script updated');
 
     location.hash = 'filter=' + encodeURIComponent(filterValue);
 

@@ -512,28 +512,7 @@ class UsersService extends BaseApplicationComponent
 	 */
 	public function getEmailVerifyUrl(UserModel $user)
 	{
-		$userRecord = $this->_getUserRecordById($user->id);
-		$unhashedVerificationCode = $this->_setVerificationCodeOnUserRecord($userRecord);
-		$userRecord->save();
-
-		if ($user->can('accessCp'))
-		{
-			$url = UrlHelper::getActionUrl('users/verifyemail', array('code' => $unhashedVerificationCode, 'id' => $userRecord->uid), craft()->request->isSecureConnection() ? 'https' : 'http');
-		}
-		else
-		{
-			// We want to hide the CP trigger if they don't have access to the CP.
-			$path = craft()->config->get('actionTrigger').'/users/verifyemail';
-			$params = array(
-				'code' => $unhashedVerificationCode,
-				'id' => $userRecord->uid
-			);
-
-			$locale = $user->preferredLocale ?: craft()->i18n->getPrimarySiteLocaleId();
-			$url = UrlHelper::getSiteUrl($path, $params, UrlHelper::getProtocolForTokenizedUrl(), $locale);
-		}
-
-		return $url;
+		return $this->_getUserUrl($user, 'verifyemail');
 	}
 
 	/**
@@ -545,27 +524,7 @@ class UsersService extends BaseApplicationComponent
 	 */
 	public function getPasswordResetUrl(UserModel $user)
 	{
-		$userRecord = $this->_getUserRecordById($user->id);
-		$unhashedVerificationCode = $this->_setVerificationCodeOnUserRecord($userRecord);
-		$userRecord->save();
-
-		$path = craft()->config->get('actionTrigger').'/users/setpassword';
-		$params = array(
-			'code' => $unhashedVerificationCode,
-			'id' => $userRecord->uid
-		);
-
-		$scheme = UrlHelper::getProtocolForTokenizedUrl();
-
-		if ($user->can('accessCp'))
-		{
-			return UrlHelper::getCpUrl($path, $params, $scheme);
-		}
-		else
-		{
-			$locale = $user->preferredLocale ?: craft()->i18n->getPrimarySiteLocaleId();
-			return UrlHelper::getSiteUrl($path, $params, $scheme, $locale);
-		}
+		return $this->_getUserUrl($user, 'setpassword');
 	}
 
 	/**
@@ -1294,16 +1253,20 @@ class UsersService extends BaseApplicationComponent
 			$pastTimeStamp = $expire->sub($interval)->getTimestamp();
 			$pastTime = DateTimeHelper::formatTimeForDb($pastTimeStamp);
 
-			$ids = craft()->db->createCommand()->select('id')
+			$userIds = craft()->db->createCommand()->select('id')
 				->from('users')
 				->where('pending=1 AND verificationCodeIssuedDate < :pastTime', array(':pastTime' => $pastTime))
 				->queryColumn();
 
-			$affectedRows = craft()->db->createCommand()->delete('elements', array('in', 'id', $ids));
-
-			if ($affectedRows > 0)
+			if ($userIds)
 			{
-				Craft::log('Just deleted '.$affectedRows.' pending users from the users table, because the were more than '.$duration.' old', LogLevel::Info, true);
+				foreach ($userIds as $userId)
+				{
+					$user = $this->getUserById($userId);
+					$this->deleteUser($user);
+
+					Craft::log('Just deleted pending userId '.$userId.' ('.$user->username.'), because the were more than '.$duration.' old', LogLevel::Info, true);
+				}
 			}
 		}
 	}
@@ -1689,5 +1652,45 @@ class UsersService extends BaseApplicationComponent
 		}
 
 		return $success;
+	}
+
+	/**
+	 * Sets a new verification code on a user, and returns their new verification URL
+	 *
+	 * @param UserModel $user   The user that should get the new Password Reset URL
+	 * @param string    $action The UsersController action that the URL should point to
+	 *
+	 * @return string The new Password Reset URL.
+	 * @see getPasswordResetUrl()
+	 * @see getEmailVerifyUrl()
+	 */
+	private function _getUserUrl(UserModel $user, $action)
+	{
+		$userRecord = $this->_getUserRecordById($user->id);
+		$unhashedVerificationCode = $this->_setVerificationCodeOnUserRecord($userRecord);
+		$userRecord->save();
+
+		$path = craft()->config->get('actionTrigger').'/users/'.$action;
+		$params = array(
+			'code' => $unhashedVerificationCode,
+			'id' => $userRecord->uid
+		);
+
+		$scheme = UrlHelper::getProtocolForTokenizedUrl();
+
+		if ($user->can('accessCp'))
+		{
+			// Only use getCpUrl() if the base CP URL has been explicitly set,
+			// so UrlHelper won't use HTTP_HOST
+			if (craft()->config->get('baseCpUrl'))
+			{
+				return UrlHelper::getCpUrl($path, $params, $scheme);
+			}
+
+			$path = craft()->config->get('cpTrigger').'/'.$path;
+		}
+
+		$locale = $user->preferredLocale ?: craft()->i18n->getPrimarySiteLocaleId();
+		return UrlHelper::getSiteUrl($path, $params, $scheme, $locale);
 	}
 }

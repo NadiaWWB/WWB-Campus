@@ -95,12 +95,12 @@
 
 <table>
 <tableBody>{#
-{% for article in craft.entries.section('article').limit(10).find() %}
-	{% set relatedThemes = craft.entries.section('unit').relatedTo(article) %}
+{% for literature in craft.entries.section('literature').limit(10).find() %}
 
+	{% set relatedThemes = craft.entries.section('unit').relatedTo(literature) %}
 
-<tr><td><a href="{{ article.url }}">{{ article.title }}</a></td>
-<td>{{article.genre.first}}</td>
+<tr><td><a href="{{ literature.url }}">{{ literature.title }}</a></td>
+<td>{{literature.genre.first}}</td>
 <td>{{relatedThemes.title}}Unit</td>
 <td>Theme</td>
 </tr>

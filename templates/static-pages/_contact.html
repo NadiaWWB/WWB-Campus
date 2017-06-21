@@ -10,18 +10,23 @@
     <article class="hentry">
       <h1>{{ entry.title }}</h1>
 
-
-
-<form accept-charset="UTF-8" action="https://formkeep.com/f/2b854b7b89eb" method="POST" role="form" style="max-width:60%;">
-  
+{% if error|default(false) %}
+  <p>{{error}}</p>
+{% endif %}
+<form accept-charset="UTF-8" action="" method="POST" role="form" style="max-width:60%;">
+  <input type="hidden" name="action" value="utility/contact/submit">
+  <input type="hidden" name="redirect" value="{{url('contact')}}">
   <p>
     <label>Name</label><br />
-    <input tabindex="1" type="text" name="name" id="name" class="nice_form" size="40" maxlength="35" />
+    <input tabindex="1" type="text" name="name" id="name" class="nice_form" size="40" maxlength="35" value="{{name|default('')}}" />
   </p>
   <p>
     <label>Email Address</label><br />
-    <input tabindex="2" type="text" name="email" id="email" onblur="validateEmail(value)" class="nice_form" size="40" maxlength="35" />
+    <input tabindex="2" type="text" name="email" id="email" onblur="validateEmail(value)" class="nice_form" size="40" maxlength="35" value="{{email|default('')}}" />
     <span class="error" id="emailError" style="display: none;">Please use a valid email address</span>
+  </p>
+  <p>
+    <input type="checkbox" checked="checked" id="newsletter" name="newsletter"> <label for="newsletter">Subscribe to our newsletter</label><br />
   </p>
   <p>
     <label for="Subject">Subject</label><br />
@@ -31,12 +36,12 @@
       <option value="Submitting ideas">Suggest a resource</option>
       <option value="Sharing ideas from the Campus Website">Share a teaching idea</option>
       <option value="Other from the Campus Website">Other</option>
-
-
     </select>
   </p>
     <label>Message</label><br />
-      <textarea tabindex="3" name="message" class="nice_form" style="min-height:200px;"></textarea>
+      <textarea tabindex="3" name="message" class="nice_form" style="min-height:200px;">{{message|default('')}}</textarea>
+
+      <p>{{craft.recaptcha.render()}}</p>
   <p>
     <button type="submit" class="pill tiny radius">Submit</button>
   </p>

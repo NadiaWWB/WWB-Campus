@@ -206,8 +206,8 @@ class UsersController extends BaseController
 	public function actionSendPasswordResetEmail()
 	{
 		$this->requirePostRequest();
-
 		$errors = array();
+		$existingUser = false;
 
 		// If someone's logged in and they're allowed to edit other users, then see if a userId was submitted
 		if (craft()->userSession->checkPermission('editUsers'))
@@ -222,6 +222,8 @@ class UsersController extends BaseController
 				{
 					throw new HttpException(404);
 				}
+
+				$existingUser = true;
 			}
 		}
 
@@ -231,49 +233,46 @@ class UsersController extends BaseController
 
 			if (!$loginName)
 			{
+				// If they didn't even enter a username/email, just bail now.
 				$errors[] = Craft::t('Username or email is required.');
-			}
-			else
-			{
-				$user = craft()->users->getUserByUsernameOrEmail($loginName);
+				$this->_handleSendPasswordResetError($errors);
 
-				if (!$user)
-				{
-					$errors[] = Craft::t('Invalid username or email.');
-				}
+				return;
+			}
+
+			$user = craft()->users->getUserByUsernameOrEmail($loginName);
+
+			if (!$user)
+			{
+				$errors[] = Craft::t('Invalid username or email.');
 			}
 		}
 
 		if (!empty($user))
 		{
-			if (craft()->users->sendPasswordResetEmail($user))
+			if (!craft()->users->sendPasswordResetEmail($user))
 			{
-				if (craft()->request->isAjaxRequest())
-				{
-					$this->returnJson(array('success' => true));
-				}
-				else
-				{
-					craft()->userSession->setNotice(Craft::t('Password reset email sent.'));
-					$this->redirectToPostedUrl();
-				}
+				$errors[] = Craft::t('There was a problem sending the password reset email.');
 			}
-
-			$errors[] = Craft::t('There was a problem sending the password reset email.');
 		}
 
-		if (craft()->request->isAjaxRequest())
+		// If there haven't been any errors, or there were, and it's not one logged in user editing another
+		// and we want to pretend like there wasn't any errors...
+		if (empty($errors) || (count($errors) > 0 && !$existingUser && craft()->config->get('preventUserEnumeration')))
 		{
-			$this->returnErrorJson($errors);
+			if (craft()->request->isAjaxRequest())
+			{
+				$this->returnJson(array('success' => true));
+			}
+			else
+			{
+				craft()->userSession->setNotice(Craft::t('Password reset email sent.'));
+				$this->redirectToPostedUrl();
+			}
 		}
-		else
-		{
-			// Send the data back to the template
-			craft()->urlManager->setRouteVariables(array(
-				'errors'    => $errors,
-				'loginName' => isset($loginName) ? $loginName : null,
-			));
-		}
+
+		// Handle the errors.
+		$this->_handleSendPasswordResetError($errors, $loginName);
 	}
 
 	/**
@@ -640,7 +639,13 @@ class UsersController extends BaseController
 
 				if (craft()->userSession->checkPermission('deleteUsers'))
 				{
-					$sketchyActions[] = array('id' => 'delete-btn', 'label' => Craft::t('Delete…'));
+					// Even if they have delete user permissions, we don't want a non-admin
+					// to be able to delete an admin.
+					$currentUser = craft()->userSession->getUser();
+
+					if (($currentUser && $currentUser->admin) || !$variables['account']->admin) {
+						$sketchyActions[] = array('id' => 'delete-btn', 'label' => Craft::t('Delete…'));
+					}
 				}
 			}
 		}
@@ -905,7 +910,10 @@ class UsersController extends BaseController
 		// Are they allowed to set a new password?
 		if ($thisIsPublicRegistration)
 		{
-			$user->newPassword = craft()->request->getPost('password', '');
+			if (!craft()->config->get('deferPublicRegistrationPassword'))
+			{
+				$user->newPassword = craft()->request->getPost('password', '');
+			}
 		}
 		else if ($isCurrentUser)
 		{
@@ -1016,20 +1024,18 @@ class UsersController extends BaseController
 				$originalEmail = $user->email;
 				$user->email = $user->unverifiedEmail;
 
-				try
+				if ($isNewUser)
 				{
-					if ($isNewUser)
-					{
-						// Send the activation email
-						craft()->users->sendActivationEmail($user);
-					}
-					else
-					{
-						// Send the standard verification email
-						craft()->users->sendNewEmailVerifyEmail($user);
-					}
+					// Send the activation email
+					$emailSent = craft()->users->sendActivationEmail($user);
 				}
-				catch (\phpmailerException $e)
+				else
+				{
+					// Send the standard verification email
+					$emailSent = craft()->users->sendNewEmailVerifyEmail($user);
+				}
+
+				if (!$emailSent)
 				{
 					craft()->userSession->setError(Craft::t('User saved, but couldn’t send verification email. Check your email settings.'));
 				}
@@ -1062,7 +1068,14 @@ class UsersController extends BaseController
 			}
 			else
 			{
-				craft()->userSession->setNotice(Craft::t('User saved.'));
+				if ($thisIsPublicRegistration)
+				{
+					craft()->userSession->setNotice(Craft::t('User registered.'));
+				}
+				else
+				{
+					craft()->userSession->setNotice(Craft::t('User saved.'));
+				}
 
 				// Is this public registration, and is the user going to be activated automatically?
 				if ($publicActivation)
@@ -1287,6 +1300,7 @@ class UsersController extends BaseController
 	 * Sends a new activation email to a user.
 	 *
 	 * @return null
+	 * @throws Exception
 	 */
 	public function actionSendActivationEmail()
 	{
@@ -1306,15 +1320,23 @@ class UsersController extends BaseController
 			throw new Exception(Craft::t('Invalid account status for user ID “{id}”.', array('id' => $userId)));
 		}
 
-		craft()->users->sendActivationEmail($user);
+		$emailSent = craft()->users->sendActivationEmail($user);
 
 		if (craft()->request->isAjaxRequest())
 		{
-			$this->returnJson(array('success' => true));
+			$this->returnJson(array('success' => $emailSent));
 		}
 		else
 		{
-			craft()->userSession->setNotice(Craft::t('Activation email sent.'));
+			if ($emailSent)
+			{
+				craft()->userSession->setNotice(Craft::t('Activation email sent.'));
+			}
+			else
+			{
+				craft()->userSession->setError(Craft::t('Couldn’t send activation email. Check your email settings.'));
+			}
+
 			$this->redirectToPostedUrl();
 		}
 	}
@@ -1766,21 +1788,24 @@ class UsersController extends BaseController
 				else
 				{
 					$permissions = craft()->request->getPost('permissions');
+
+					// it will be an empty string if no permissions were assigned during user saving.
+					if ($permissions === '')
+					{
+						$permissions = array();
+					}
 				}
 
-				if ($permissions !== null)
+				if (is_array($permissions))
 				{
 					// See if there are any new permissions in here
-					if (is_array($permissions))
+					foreach ($permissions as $permission)
 					{
-						foreach ($permissions as $permission)
+						if (!$user->can($permission))
 						{
-							if (!$user->can($permission))
-							{
-								// Yep. This will require an elevated session
-								$this->requireElevatedSession();
-								break;
-							}
+							// Yep. This will require an elevated session
+							$this->requireElevatedSession();
+							break;
 						}
 					}
 
@@ -1921,6 +1946,26 @@ class UsersController extends BaseController
 			$activateAccountSuccessPath = craft()->config->getLocalized('activateAccountSuccessPath');
 			$url = UrlHelper::getSiteUrl($activateAccountSuccessPath);
 			$this->redirectToPostedUrl($user, $url);
+		}
+	}
+
+	/**
+	 * @param      $errors
+	 * @param null $loginName
+	 */
+	private function _handleSendPasswordResetError($errors, $loginName = null)
+	{
+		if (craft()->request->isAjaxRequest())
+		{
+			$this->returnErrorJson($errors);
+		}
+		else
+		{
+			// Send the data back to the template
+			craft()->urlManager->setRouteVariables(array(
+				'errors'    => $errors,
+				'loginName' => $loginName,
+			));
 		}
 	}
 }

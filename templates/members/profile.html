@@ -1,0 +1,91 @@
+{% extends "_layout" %}
+{% requireLogin %}
+{% block content %}
+{% include 'global/_hero-static-image.html' %}
+<div id="start-of-content" class="content">
+
+	<article class="hentry">
+		<h1>Profile</h1>
+        {% if 
+            currentUser.profileFirstName == '' or
+            currentUser.profileLastName == '' or 
+            currentUser.schoolName == '' or
+            currentUser.city == '' or
+            currentUser.country == ''
+        %}
+        <p>To continue using WWB-Campus as a registered educator, please complete your profile below.</p>
+        {% else %}
+        <p>Thank you for completing your WWB-Campus Educator profile. You now have access to the Teaching Ideas next to the literature, the <a href="{{url('educators')}}">For Educators page</a>, and other educator resources.</p>
+        {% endif %}
+
+        <form method="post" accept-charset="UTF-8" class="login_form">
+            {{ getCsrfInput() }}
+            <input type="hidden" name="action" value="users/saveUser">
+            {% set redirect = craft.request.getQuery('redirect') %}
+
+            {% if redirect != ''%}
+                <input type="hidden" name="redirect" value="{{url(redirect)}}">
+            {% else %}
+                <input type="hidden" name="redirect" value="{{url('members/profile')}}">
+            {% endif %}
+            
+            <input type="hidden" name="userId" value="{{ currentUser.id }}">
+
+            <p>
+                <label for="firstName">First Name</label><br />
+                <input type="text" id="firstName" name="fields[profileFirstName]" value="{{ currentUser.profileFirstName }}">
+            </p>
+
+            <p>
+                <label for="lastName">Last Name</label><br />
+                <input type="text" id="lastName" name="fields[profileLastName]" value="{{ currentUser.profileLastName }}">
+            </p>
+
+            <p>
+                <label for="schoolName">School, Library, or Organization Name</label><br />
+                <input type="text" id="schoolName" name="fields[schoolName]" value="{{ currentUser.schoolName }}">
+            </p>
+
+            <p>
+                <label for="schoolLevel">School Level (if applicable)</label><br />
+                <select id="schoolLevel" name="fields[schoolLevel]">
+                    <option value="">Select</option>
+                    <option {% if currentUser.schoolLevel == 'primary'%} selected {% endif %} value="primary">Primary</option>
+                    <option {% if currentUser.schoolLevel == 'middle'%} selected {% endif %} value="middle">Middle</option>
+                    <option {% if currentUser.schoolLevel == 'secondary'%} selected {% endif %} value="secondary">Secondary</option>
+                    <option {% if currentUser.schoolLevel == 'college/post secondary'%} selected {% endif %} value="college/post secondary">College/Post-Secondary</option>
+                    <option {% if currentUser.schoolLevel == 'graduate'%} selected {% endif %} value="graduate">Graduate</option>
+                    <option {% if currentUser.schoolLevel == 'n/a'%} selected {% endif %} value="n/a">N/A</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="schoolType">School Type (if applicable)</label><br />
+                <select id="schoolType" name="fields[schoolType]">
+                    <option value="">Select</option>
+                    <option {% if currentUser.schoolType == 'public'%} selected {% endif %} value="public">Public</option>
+                    <option {% if currentUser.schoolType == 'private'%} selected {% endif %} value="private">Private</option>
+                    <option {% if currentUser.schoolLevel == 'n/a'%} selected {% endif %} value="n/a">N/A</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="city">City</label><br />
+                <input type="text" id="city" name="fields[city]" value="{{ currentUser.city }}">
+            </p>
+
+            <p>
+                <label for="country">Country</label><br />
+                <input type="text" id="country" name="fields[country]" value="{{ currentUser.country }}">
+            </p>
+
+            <p>
+                <input type="checkbox" checked="checked" id="newsletter" name="fields[newsletterSubscribe]"> <label for="newsletter">Subscribe to WWB-Campus Newsletter</label><br />
+            </p>
+
+            <input type="submit" value="Save Profile">
+        </form>
+
+	</article>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 //Base
 @import 
-"bower_components/normalize-scss/normalize",
-"bower_components/normalize-opentype.css/normalize-opentype",
+"bower_components/normalize-scss/normalize.scss",
+"bower_components/normalize-opentype.css/normalize-opentype.scss",
 "bourbon",
 "modules/grid-settings",//overrides bitters grid-settings
 "neat",
@@ -34,6 +34,9 @@
 @import "modules/graphic-lit";
 @import "modules/table";
 @import "modules/utilities";
+@import "modules/search";
+@import "modules/blog";
+@import "modules/login";
 
 body {
   background-color: $wwb-grey;

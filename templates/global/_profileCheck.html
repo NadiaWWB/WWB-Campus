@@ -1,0 +1,15 @@
+{% if not currentUser %}
+    {% redirect url('members/login?redirect='~craft.request.getPath()) %}
+{% endif %}
+
+{% if craft.request.lastSegment != 'profile' %}
+    {% if 
+        currentUser.profileFirstName == '' or
+        currentUser.profileLastName == '' or 
+        currentUser.schoolName == '' or
+        currentUser.city == '' or
+        currentUser.country == ''
+    %}
+        {% redirect url('members/profile?redirect='~craft.request.getPath()) %}
+    {% endif %}
+{% endif %}

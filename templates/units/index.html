@@ -29,7 +29,7 @@
 
 
 			<ul>
-				{% for entry in craft.entries.section('news').limit(10).find() %}
+				{% for entry in craft.entries.section('blog').limit(10).find() %}
 					<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
 
 					<br />

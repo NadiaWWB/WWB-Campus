@@ -9,7 +9,7 @@
           {% if block.type == "image" %}
             {% set image = block.image.first() %}
             {% if image %}
-              <div href="{{unit.url}}" class="image-box" style="background-image:url({{ image.getUrl() }});"></div>
+              <div href="{{theme.url}}" class="image-box" style="background-image:url({{ image.getUrl() }});"></div>
             {% endif %}
           {% endif %}
         {% endfor %}

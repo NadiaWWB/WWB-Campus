@@ -28,11 +28,14 @@ display a full width background image, respectively
     <li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'educators' %} active{% endif %}{% endif %}">
       <a href="/educators/">For Educators</a>
     </li>
-    <li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'news' %} active{% endif %}{% endif %}">
-      <a href="/news/">Blog</a>
+    <li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'blog' %} active{% endif %}{% endif %}">
+      <a href="/blog/">Blog</a>
     </li>
     <li class="nav-item{% if craft.request.getSegment(1) is defined %}{% if craft.request.getSegment(1) == 'contact' %} active{% endif %}{% endif %}">
       <a href="/contact/">Contact</a>
+    </li>
+    <li class="nav-item">
+      <a href="http://www.wordswithoutborders.org/donate/" target="_blank">Donate</a>
     </li>
   </ul>
   <div class="footer-secondary-links">

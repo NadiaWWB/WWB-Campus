@@ -1,0 +1,49 @@
+{% extends "_layout" %}
+
+{% block content %}
+{% include 'global/_hero-static-image.html' %}
+<div id="start-of-content" class="content">
+
+	<article class="hentry">
+		<h1>Login</h1>
+
+		<p>Log in to access the For Educators page and dozens of teaching ideas, assignments, and classroom activities.</p>
+
+		<p>Need an account? Register <a href="{{url('members/register')}}">here</a>.</p>
+
+		<form accept-charset="UTF-8" action="" method="POST" class="login_form" role="form">
+			{{ getCsrfInput() }}
+		  <input type="hidden" name="action" value="users/login">
+			{% set redirect = craft.request.getQuery('redirect') %}
+
+			{% if redirect != ''%}
+					<input type="hidden" name="redirect" value="{{url(redirect)}}">
+			{% endif %}
+
+		  <p>
+		    <label for="loginName">Email Address</label><br />
+		    <input id="loginName" type="text" name="loginName" value="{{ craft.session.rememberedUsername }}">
+		  </p>
+
+      <p>
+		    <label for="password">Password</label><br />
+		    <input id="password" type="password" name="password">
+		  </p>
+
+          <p>
+            <label>
+                <input type="checkbox" name="rememberMe" value="1">
+                Remember me
+            </label>
+          </p>
+		  <p>
+				<input type="submit" class="pill tiny radius" value="Login">
+		  </p>
+          
+		</form>
+
+		<p><a href="{{ url('members/forgot-password') }}">Forget your password?</a></p>
+
+	</article>
+
+{% endblock %}

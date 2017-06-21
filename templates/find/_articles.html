@@ -1,7 +1,7 @@
-  {% cache for 6 hours %}
-  {% for entry in  articles %}
-    {% set relatedThemes = entry.theme.first() %}
-    {% set genre = entry.genre.first %}
+  {% cache using key "search"~query|default('') for 12 hours %}
+  {% for entry in literatures %}
+    {% set relatedThemes = entry.theme[0] ?? null %}
+    {% set genre = entry.genre[0] ?? null %}
     {% set authors = entry.contributorAuthor %}
 
     {% set units = craft.entries.section('unitThemes').relatedTo(entry).first() %}

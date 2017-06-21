@@ -11,8 +11,8 @@
    ========================================================================== */
 /**
  * 1. Set default font family to sans-serif.
- * 2. Prevent iOS text size adjust after orientation change, without disabling
- *  user zoom.
+ * 2. Prevent iOS and IE text size adjust after device orientation change,
+ *    without disabling user zoom.
  * 3. Corrects text resizing oddly in IE 6/7 when body `font-size` is set using
  *  `em` units.
  */
@@ -38,14 +38,29 @@ body {
  * and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
  */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
   display: block; }
 
 /**
  * 1. Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
  */
-audio, canvas, progress, video {
+audio,
+canvas,
+progress,
+video {
   display: inline-block;
   /* 1 */
   vertical-align: baseline;
@@ -61,9 +76,10 @@ audio:not([controls]) {
 
 /**
  * Address `[hidden]` styling not present in IE 8/9/10.
- * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.
  */
-[hidden], template {
+[hidden],
+template {
   display: none; }
 
 /* Links
@@ -75,7 +91,8 @@ a {
   background-color: transparent; }
 
 /**
- * Improve readability when focused and also mouse hovered in all browsers.
+ * Improve readability of focused elements when they are also in an
+ * active/hover state.
  */
 a:active, a:hover {
   outline: 0; }
@@ -91,7 +108,8 @@ abbr[title] {
 /**
  * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
-b, strong {
+b,
+strong {
   font-weight: bold; }
 
 /**
@@ -124,7 +142,8 @@ small {
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-sub, sup {
+sub,
+sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -163,7 +182,6 @@ figure {
  * Address differences between Firefox and other browsers.
  */
 hr {
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0; }
 
@@ -177,7 +195,10 @@ pre {
  * Address odd `em`-unit font size rendering in all browsers.
  * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
  */
-code, kbd, pre, samp {
+code,
+kbd,
+pre,
+samp {
   font-family: monospace, monospace;
   font-size: 1em; }
 
@@ -194,7 +215,11 @@ code, kbd, pre, samp {
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  * 4. Improves appearance and consistency in all browsers.
  */
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   color: inherit;
   /* 1 */
   font: inherit;
@@ -214,7 +239,8 @@ button {
  * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
  */
-button, select {
+button,
+select {
   text-transform: none; }
 
 /**
@@ -226,7 +252,10 @@ button, select {
  * 4. Removes inner spacing in IE 7 without affecting normal text inputs.
  *  Known issue: inner spacing remains in IE 6.
  */
-button, html input[type="button"], input[type="reset"], input[type="submit"] {
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
   cursor: pointer;
@@ -235,13 +264,15 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-button[disabled], html input[disabled] {
+button[disabled],
+html input[disabled] {
   cursor: default; }
 
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-button::-moz-focus-inner, input::-moz-focus-inner {
+button::-moz-focus-inner,
+input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
@@ -257,7 +288,8 @@ input {
  * 2. Remove excess padding in IE 8/9/10.
  *  Known issue: excess padding remains in IE 6.
  */
-input[type="checkbox"], input[type="radio"] {
+input[type="checkbox"],
+input[type="radio"] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -268,28 +300,27 @@ input[type="checkbox"], input[type="radio"] {
  * `font-size` values of the `input`, it causes the cursor style of the
  * decrement button to change from `default` to `text`.
  */
-input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   height: auto; }
 
 /**
  * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
- * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
- *  (include `-moz` to future-proof).
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
  */
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  /* 2 */
-  box-sizing: content-box; }
+  box-sizing: content-box;
+  /* 2 */ }
 
 /**
  * Remove inner padding and search cancel button in Safari and Chrome on OS X.
  * Safari (but not Chrome) clips the cancel button when the search input has
  * padding (and `textfield` appearance).
  */
-input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
 /**
@@ -334,7 +365,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-td, th {
+td,
+th {
   padding: 0; }
 
 /*! normalize-opentype.css v0.2.4 | MIT License | kennethormandy.com/journal/normalize-opentype-css */
@@ -353,7 +385,9 @@ td, th {
   background-color: #ACCEF7;
   /* 3. */ }
 
-html, body, table {
+html,
+body,
+table {
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 1, "lnum" 0, "dlig" 0;
   /* 2. */ }
 
@@ -362,7 +396,9 @@ html, body, table {
 /**
  * 1. Turn on discretionary ligatures for larger headings
  */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 1, "lnum" 0, "dlig" 1;
   /* 1. */ }
 
@@ -388,7 +424,10 @@ time {
  * 1. Turn off kerning and ligatures,
  *    Turn on lining, tabular numerals, slashed zero
  */
-pre, kbd, samp, code {
+pre,
+kbd,
+samp,
+code {
   font-feature-settings: "kern" 0, "liga" 0, "calt" 1, "dlig" 0, "pnum" 0, "tnum" 1, "onum" 0, "lnum" 1, "zero" 1;
   /* 1. */ }
 
@@ -428,7 +467,14 @@ sub {
  * 1. Turns on lining, proportional numerals without clarified zeroes
  * TODO: Additional input modes https://developer.mozilla.org/en/docs/Web/HTML/Element/Input#attr-inputmode
  */
-input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="number"], input[type="range"], input[type="tel"], input[type="week"] {
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="number"],
+input[type="range"],
+input[type="tel"],
+input[type="week"] {
   font-feature-settings: "kern" 0, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 0, "lnum" 1, "zero" 0;
   /* 1. */ }
 
@@ -439,25 +485,19 @@ input[type="color"], input[type="date"], input[type="datetime"], input[type="dat
 /**
  * 1. Turns on tabular, lining numerals and slashed zero
  */
-tbody, caption {
+tbody,
+caption {
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 0, "tnum" 1, "onum" 0, "lnum" 1, "zero" 1;
   /* 1. */ }
 
-/* Neat 1.7.0
- * http://neat.bourbon.io
- * Copyright 2012-2014 thoughtbot, inc.
- * MIT License */
 html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-*, *:before, *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
+*, *::after, *::before {
   box-sizing: inherit; }
 
-button, input[type="submit"] {
+button,
+input[type="submit"] {
   -webkit-font-smoothing: antialiased;
   background-color: #f8971d;
   border-radius: 3px;
@@ -468,7 +508,8 @@ button, input[type="submit"] {
   line-height: 1;
   padding: .75em 1em;
   text-decoration: none; }
-  button:hover, input[type="submit"]:hover {
+  button:hover,
+  input[type="submit"]:hover {
     background-color: #00a0af;
     color: white; }
 
@@ -476,12 +517,12 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: #fbfaf7;
   color: #272727;
-  font-family: 'Open Sans', 'Roboto', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Open Sans", "Roboto", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 1em;
   line-height: 1.5; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto Slab', 'Open Sans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto Slab", "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   line-height: 1.25;
   margin: 0 0 .5em 0;
   text-rendering: optimizeLegibility;
@@ -555,9 +596,11 @@ fieldset {
   margin: 0 0 0.75 0;
   padding: 1.5; }
 
-input, label, select {
+input,
+label,
+select {
   display: inline-block;
-  font-family: 'Open Sans', 'Roboto', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Open Sans", "Roboto", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 1em; }
 
 label {
@@ -568,7 +611,9 @@ label {
   label abbr {
     display: none; }
 
-textarea, input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="time"], input[type="week"], select[multiple=multiple] {
+textarea,
+input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"], input:not([type]), textarea,
+select[multiple=multiple] {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -579,14 +624,18 @@ textarea, input[type="email"], input[type="number"], input[type="password"], inp
   border-radius: 3px;
   border: 1px solid #DCD9CB;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
-  font-family: 'Open Sans', 'Roboto', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Open Sans", "Roboto", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 1em;
   margin-bottom: 0.75;
   padding: 0.5 0.5;
   width: 100%; }
-  textarea:hover, input[type="email"]:hover, input[type="number"]:hover, input[type="password"]:hover, input[type="search"]:hover, input[type="tel"]:hover, input[type="text"]:hover, input[type="url"]:hover, input[type="color"]:hover, input[type="date"]:hover, input[type="datetime"]:hover, input[type="datetime-local"]:hover, input[type="month"]:hover, input[type="time"]:hover, input[type="week"]:hover, select[multiple=multiple]:hover {
+  textarea:hover,
+  input[type="color"]:hover, input[type="date"]:hover, input[type="datetime"]:hover, input[type="datetime-local"]:hover, input[type="email"]:hover, input[type="month"]:hover, input[type="number"]:hover, input[type="password"]:hover, input[type="search"]:hover, input[type="tel"]:hover, input[type="text"]:hover, input[type="time"]:hover, input[type="url"]:hover, input[type="week"]:hover, input:not([type]):hover, textarea:hover,
+  select[multiple=multiple]:hover {
     border-color: #c7c3ad; }
-  textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="url"]:focus, input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, select[multiple=multiple]:focus {
+  textarea:focus,
+  input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="week"]:focus, input:not([type]):focus, textarea:focus,
+  select[multiple=multiple]:focus {
     border-color: #f8971d;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 5px rgba(244, 139, 8, 0.7);
     outline: none; }
@@ -647,7 +696,8 @@ dl {
   dl dd {
     margin: 0; }
 
-button, input[type="submit"] {
+button,
+input[type="submit"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -688,10 +738,10 @@ button, input[type="submit"] {
   margin-left: auto;
   margin-right: auto;
   background-color: #fbfaf7; }
-  .wrapper:after {
+  .wrapper::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
+    display: table; }
 
 .content {
   background-color: #fbfaf7;
@@ -701,11 +751,11 @@ button, input[type="submit"] {
   margin-top: 1em;
   padding-bottom: 10em;
   padding: 2em 1em; }
-  .content:after {
+  .content::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
-  @media screen and (min-width: 26.25em)  {
+    display: table; }
+  @media screen and (min-width: 26.25em) {
     .content {
       padding: 2em 3em; } }
 
@@ -718,10 +768,10 @@ button, input[type="submit"] {
   width: 100%;
   clear: both;
   display: block; }
-  .row:after {
+  .row::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
+    display: table; }
 
 .padded-left-2 {
   padding-left: 2em; }
@@ -733,7 +783,7 @@ button, input[type="submit"] {
   width: 100%; }
   .column:last-child {
     margin-right: 0; }
-  @media screen and (min-width: 56.25em)  {
+  @media screen and (min-width: 56.25em) {
     .column {
       float: left;
       display: block;
@@ -749,7 +799,7 @@ button, input[type="submit"] {
   width: 100%; }
   .column-inner:last-child {
     margin-right: 0; }
-  @media screen and (min-width: 68.75em)  {
+  @media screen and (min-width: 68.75em) {
     .column-inner {
       float: left;
       display: block;
@@ -765,7 +815,7 @@ button, input[type="submit"] {
   width: 100%; }
   .columns-inner:last-child {
     margin-right: 0; }
-  @media screen and (min-width: 56.25em)  {
+  @media screen and (min-width: 56.25em) {
     .columns-inner {
       float: left;
       display: block;
@@ -782,13 +832,13 @@ button, input[type="submit"] {
   display: block;
   margin-right: 2.35765%;
   width: 100%; }
-  .column-primary:after {
+  .column-primary::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
+    display: table; }
   .column-primary:last-child {
     margin-right: 0; }
-  @media screen and (min-width: 56.25em)  {
+  @media screen and (min-width: 56.25em) {
     .column-primary {
       float: left;
       display: block;
@@ -796,7 +846,7 @@ button, input[type="submit"] {
       width: 65.88078%; }
       .column-primary:last-child {
         margin-right: 0; } }
-  @media screen and (min-width: 37.5em)  {
+  @media screen and (min-width: 37.5em) {
     .column-primary .image-box {
       float: left;
       display: block;
@@ -814,7 +864,7 @@ aside, .boxed {
   border-radius: 4px;
   margin-bottom: 4em; }
 
-@media screen and (min-width: 56.25em)  {
+@media screen and (min-width: 56.25em) {
   .boxed {
     padding: 2em;
     box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.15); } }
@@ -833,6 +883,7 @@ aside {
   width: 100%; }
   .layout-article article:last-child {
     margin-right: 0; }
+
 .layout-article aside {
   float: left;
   display: block;
@@ -842,7 +893,8 @@ aside {
   border-top: none; }
   .layout-article aside:last-child {
     margin-right: 0; }
-@media screen and (min-width: 56.25em)  {
+
+@media screen and (min-width: 56.25em) {
   .layout-article article {
     float: left;
     display: block;
@@ -865,10 +917,10 @@ aside {
   max-width: 80.5em;
   margin-left: auto;
   margin-right: auto; }
-  .layout-2column-spread:after {
+  .layout-2column-spread::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
+    display: table; }
   .layout-2column-spread article {
     float: left;
     display: block;
@@ -883,7 +935,7 @@ aside {
     width: 100%; }
     .layout-2column-spread aside:last-child {
       margin-right: 0; }
-  @media screen and (min-width: 56.25em)  {
+  @media screen and (min-width: 56.25em) {
     .layout-2column-spread aside {
       float: left;
       display: block;
@@ -906,10 +958,10 @@ aside {
   max-width: 80.5em;
   margin-left: auto;
   margin-right: auto; }
-  .layout-2column-wide:after {
+  .layout-2column-wide::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
+    display: table; }
   .layout-2column-wide article {
     float: left;
     display: block;
@@ -924,7 +976,7 @@ aside {
     width: 100%; }
     .layout-2column-wide aside:last-child {
       margin-right: 0; }
-  @media screen and (min-width: 56.25em)  {
+  @media screen and (min-width: 56.25em) {
     .layout-2column-wide aside {
       float: left;
       display: block;
@@ -947,10 +999,10 @@ aside {
   max-width: 80.5em;
   margin-left: auto;
   margin-right: auto; }
-  .layout-2column:after {
+  .layout-2column::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
+    display: table; }
   .layout-2column article {
     float: left;
     display: block;
@@ -965,7 +1017,7 @@ aside {
     width: 100%; }
     .layout-2column aside:last-child {
       margin-right: 0; }
-  @media screen and (min-width: 56.25em)  {
+  @media screen and (min-width: 56.25em) {
     .layout-2column aside {
       float: left;
       display: block;
@@ -988,10 +1040,10 @@ aside {
   max-width: 80.5em;
   margin-left: auto;
   margin-right: auto; }
-  .layout:after {
+  .layout::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
+    display: table; }
   .layout aside {
     float: left;
     display: block;
@@ -1017,10 +1069,10 @@ aside {
   margin-left: auto;
   margin-right: auto;
   max-width: 90%; }
-  .layout-one-column-spread:after {
+  .layout-one-column-spread::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
+    display: table; }
   .layout-one-column-spread article {
     float: left;
     display: block;
@@ -1064,7 +1116,7 @@ aside {
   -webkit-animation: scale 3s ease-in, slide 2s ease;
   -moz-animation: scale 3s ease-in, slide 2s ease;
   animation: scale 3s ease-in, slide 2s ease;
-  background: url('/assets/img/7537906870_cb72a4229e_o.jpg');
+  background: url("/assets/img/7537906870_cb72a4229e_o.jpg");
   background-repeat: no-repeat;
   background-position: 10%;
   padding-bottom: 4em;
@@ -1081,14 +1133,14 @@ aside {
     margin: auto;
     text-align: center;
     color: black; }
-    .hero .hero-inner:after {
+    .hero .hero-inner::after {
+      clear: both;
       content: "";
-      display: table;
-      clear: both; }
-    .hero .hero-inner:after {
+      display: table; }
+    .hero .hero-inner::after {
+      clear: both;
       content: "";
-      display: table;
-      clear: both; }
+      display: table; }
     .hero .hero-inner button {
       border: 1px solid #dbdbdb;
       border-radius: 3px;
@@ -1121,26 +1173,26 @@ aside {
       font-size: 1em;
       outline: none; }
       .hero .hero-inner button:hover:not(:disabled) {
-        box-shadow: inset 0 1px 0 0 white;
-        cursor: pointer;
         background-color: #f2f2f2;
         background-image: -webkit-linear-gradient(#f2f2f2, #dbdbdb);
-        background-image: linear-gradient(#f2f2f2, #dbdbdb); }
+        background-image: linear-gradient(#f2f2f2, #dbdbdb);
+        box-shadow: inset 0 1px 0 0 white;
+        cursor: pointer; }
       .hero .hero-inner button:active:not(:disabled), .hero .hero-inner button:focus:not(:disabled) {
         border: 1px solid #dbdbdb;
         box-shadow: inset 0 0 8px 4px #d4d4d4, inset 0 0 8px 4px #d4d4d4; }
       .hero .hero-inner button:hover:not(:disabled) {
+        background-color: #f2f2f2;
+        background-image: -webkit-linear-gradient(#f2f2f2, #ded8d8);
+        background-image: linear-gradient(#f2f2f2, #ded8d8);
         box-shadow: inset 0 1px 0 0 white;
-        cursor: pointer;
-        background-color: #f2f3f3;
-        background-image: -webkit-linear-gradient(#f2f3f3, #ded8d8);
-        background-image: linear-gradient(#f2f3f3, #ded8d8); }
+        cursor: pointer; }
       .hero .hero-inner button:active:not(:disabled), .hero .hero-inner button:focus:not(:disabled) {
         border: 1px solid #dfd8d8;
         box-shadow: inset 0 0 8px 4px #d7d1d1, inset 0 0 8px 4px #d7d1d1; }
       .hero .hero-inner button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed; }
+        cursor: not-allowed;
+        opacity: 0.5; }
     .hero .hero-inner blockquote {
       color: black; }
     .hero .hero-inner .hero-copy {
@@ -1153,7 +1205,7 @@ aside {
           .hero .hero-inner .hero-copy h1 {
             font-size: 2em; } }
       .hero .hero-inner .hero-copy p {
-        font-family: 'Roboto Slab', 'Open Sans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        font-family: "Roboto Slab", "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
         margin: auto;
         margin-bottom: 1em;
         font-weight: 200;
@@ -1179,14 +1231,24 @@ aside {
 
 article.hentry header {
   margin-bottom: 1.5em; }
+
 article.hentry img {
   max-width: 100%; }
+
 article.hentry p {
   font-size: 1em; }
+
 article.hentry h1, article.hentry h1 a, article.hentry h2, article.hentry h2 a {
   color: #00a0af; }
 
-p:first-child, h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p, hr + p {
+p:first-child,
+h1 + p,
+h2 + p,
+h3 + p,
+h4 + p,
+h5 + p,
+h6 + p,
+hr + p {
   text-indent: 0; }
 
 body.fiction p, body.nonfiction p {
@@ -1203,16 +1265,18 @@ aside.sidebar-right {
 
 .lead, .lead p {
   font-size: 1.2em; }
-  @media screen and (min-width: 26.25em)  {
+  @media screen and (min-width: 26.25em) {
     .lead, .lead p {
       font-size: 1.5em; } }
 
 .content img:first-child object, .content img:first-child embed, .content img:first-child iframe, .content img:first-child aside embed, .content img:first-child aside iframe, .content img:first-child aside object, .content img:first-child aside img {
   max-width: 100% !important; }
+
 .content img:first-child aside, .content img:first-child aside p {
   position: relative;
   height: 0;
   overflow: hidden; }
+
 .content img:first-child aside iframe, .content img:first-child aside p iframe, .content img:first-child .fit, .content img:first-child .fit iframe {
   position: absolute;
   top: 0;
@@ -1245,13 +1309,13 @@ sub {
 blockquote {
   max-width: 100%;
   margin-left: 2em;
-  font-family: 'Open Sans', 'Roboto', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Open Sans", "Roboto", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 1em;
   text-align: left;
   border-left: none; }
 
 th {
-  font-family: 'Open Sans', 'Roboto', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
+  font-family: "Open Sans", "Roboto", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif; }
 
 hr {
   border-top-color: #9b884e; }
@@ -1290,6 +1354,12 @@ li.nav-sidebar-item {
   margin-bottom: 1em;
   margin-left: 1.5em; }
 
+.tab-content ul.content-preview {
+  margin-left: 0em; }
+  .tab-content ul.content-preview li {
+    list-style: none;
+    margin-left: 0em; }
+
 .accordion .submenu ul li, article ul li, .tab-content ul li {
   list-style-type: circle;
   margin-left: 1em;
@@ -1301,6 +1371,16 @@ li.nav-sidebar-item {
   margin-left: 1.5em;
   margin-bottom: 0;
   line-height: 1.7; }
+
+.related-reading h4 {
+  font-size: 1.25em; }
+
+.related-reading .divider {
+  margin: 1em 0em; }
+
+.related-reading .genre {
+  color: #676767;
+  font-style: italic; }
 
 a.image-box {
   background-position: center center; }
@@ -1322,7 +1402,7 @@ form input.inline {
   margin-right: 7px; }
 
 .accordion-tabs {
-  font-family: 'Open Sans', 'Roboto', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Open Sans", "Roboto", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 85%;
   background: white;
   border: 1px solid #DCD9CB;
@@ -1334,10 +1414,10 @@ form input.inline {
   .accordion-tabs hr {
     border-bottom: 1px solid #fcfcfc;
     border-top-color: #d9d9d9; }
-  .accordion-tabs:after {
+  .accordion-tabs::after {
+    clear: both;
     content: "";
-    display: table;
-    clear: both; }
+    display: table; }
   @media screen and (min-width: 40em) {
     .accordion-tabs {
       border: none; } }
@@ -1365,10 +1445,6 @@ form input.inline {
     @media screen and (min-width: 40em) {
       .accordion-tabs li.tab-header-and-content a.tab-link {
         display: inline-block;
-        vertical-align: baseline;
-        zoom: 1;
-        *display: inline;
-        *vertical-align: auto;
         border-top: 0;
         border-top-right-radius: 3px;
         border-top-left-radius: 3px; } }
@@ -1401,7 +1477,7 @@ form input.inline {
         padding: 2.5em 2em; } }
 
 .button-group {
-  font-family: 'Open Sans', 'Roboto', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
+  font-family: "Open Sans", "Roboto", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif; }
   .button-group button {
     border: 1px solid #d9d9d9;
     border-color: #d9d9d9 #c9c9c9 #bdbdbd;
@@ -1420,8 +1496,8 @@ form input.inline {
     text-decoration: none;
     text-shadow: 0 -1px 1px white;
     background-clip: padding-box;
-    border: 1px solid #cde4e4;
-    border-color: #cde4e4 #bed3d5 #b5c2c4;
+    border: 1px solid #d9d9d9;
+    border-color: #d9d9d9 #c9c9c9 #bdbdbd;
     border-radius: 16px;
     box-shadow: inset 0 1px 0 0 white;
     color: #333333;
@@ -1448,15 +1524,15 @@ form input.inline {
     font-size: 90%;
     padding: .5em .75em; }
     .button-group button:hover:not(:disabled) {
+      background-color: #f4f4f4;
+      background-image: -webkit-linear-gradient(#f4f4f4, #d7d7d7);
+      background-image: linear-gradient(#f4f4f4, #d7d7d7);
+      background-clip: padding-box;
       border: 1px solid #c9c9c9;
       border-color: #c9c9c9 #bababa #adadad;
       box-shadow: inset 0 1px 0 0 white;
       cursor: pointer;
-      background-color: #f4f4f4;
-      background-image: -webkit-linear-gradient(#f4f4f4, #d7d7d7);
-      background-image: linear-gradient(#f4f4f4, #d7d7d7);
-      text-shadow: 0 -1px 1px #c7c7c7;
-      background-clip: padding-box; }
+      text-shadow: 0 -1px 1px #c7c7c7; }
     .button-group button:active:not(:disabled), .button-group button:focus:not(:disabled) {
       background: #e6e6e6;
       border: 1px solid #b3b3b3;
@@ -1464,26 +1540,26 @@ form input.inline {
       box-shadow: inset 0 0 6px 3px #c8c8c8;
       text-shadow: 0 -1px 1px #c8c8c8; }
     .button-group button:hover:not(:disabled) {
-      border: 1px solid #c0d3d2;
-      border-color: #c0d3d2 #b9bbbc #b8a5a2;
+      background-color: #f4f4f4;
+      background-image: -webkit-linear-gradient(#f4f4f4, #d7d7d7);
+      background-image: linear-gradient(#f4f4f4, #d7d7d7);
+      background-clip: padding-box;
+      border: 1px solid #c9c9c9;
+      border-color: #c9c9c9 #bababa #b8a5a2;
       box-shadow: inset 0 1px 0 0 white;
       cursor: pointer;
-      background-color: #f4f4f4;
-      background-image: -webkit-linear-gradient(#f4f4f4, #d6d9d9);
-      background-image: linear-gradient(#f4f4f4, #d6d9d9);
-      text-shadow: 0 -1px 1px #c4c9ca;
-      background-clip: padding-box; }
+      text-shadow: 0 -1px 1px #c7c7c7; }
     .button-group button:active:not(:disabled), .button-group button:focus:not(:disabled) {
-      background: #e2e8e9;
-      border: 1px solid #b1b4b4;
+      background: #e6e6e6;
+      border: 1px solid #b3b3b3;
       border-bottom: 1px solid #b5adab;
       box-shadow: inset 0 0 6px 3px #c9c7c7;
-      text-shadow: 0 -1px 1px #c2cecf; }
+      text-shadow: 0 -1px 1px #c8c8c8; }
     .button-group button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed; }
+      cursor: not-allowed;
+      opacity: 0.5; }
     .button-group button.active {
-      border: 1px solid #d17300;
+      border: 1px solid #ce7300;
       border-radius: 3px;
       box-shadow: inset 0 1px 0 0 #f4b86d;
       color: #333333;
@@ -1491,26 +1567,26 @@ form input.inline {
       font-size: inherit;
       font-weight: bold;
       background-color: #f8971d;
-      background-image: -webkit-linear-gradient(#f8971d, #e07b00);
-      background-image: linear-gradient(#f8971d, #e07b00);
+      background-image: -webkit-linear-gradient(#f8971d, #dd7b00);
+      background-image: linear-gradient(#f8971d, #dd7b00);
       padding: 7px 18px;
       text-decoration: none;
-      text-shadow: 0 1px 0 #ffa126;
+      text-shadow: 0 1px 0 #ffa12a;
       background-clip: padding-box;
       font-weight: 400;
       font-size: 1em; }
       .button-group button.active:hover:not(:disabled) {
-        box-shadow: inset 0 1px 0 0 #f2a23d;
-        cursor: pointer;
         background-color: #ef8b0d;
-        background-image: -webkit-linear-gradient(#ef8b0d, #d07300);
-        background-image: linear-gradient(#ef8b0d, #d07300); }
+        background-image: -webkit-linear-gradient(#ef8b0d, #ce7300);
+        background-image: linear-gradient(#ef8b0d, #ce7300);
+        box-shadow: inset 0 1px 0 0 #f2a23d;
+        cursor: pointer; }
       .button-group button.active:active:not(:disabled), .button-group button.active:focus:not(:disabled) {
-        border: 1px solid #d17300;
-        box-shadow: inset 0 0 8px 4px #bf6a00, inset 0 0 8px 4px #bf6a00; }
+        border: 1px solid #ce7300;
+        box-shadow: inset 0 0 8px 4px #be6a00, inset 0 0 8px 4px #be6a00; }
       .button-group button.active:disabled {
-        opacity: 0.5;
-        cursor: not-allowed; }
+        cursor: not-allowed;
+        opacity: 0.5; }
     .button-group button.cycle-pager-active {
       font-weight: 800;
       font-size: 1em;
@@ -1713,7 +1789,7 @@ ul.list-filter li h2 {
 
 ul.list-filter li h5 {
   font-size: .8em;
-  font-family: 'Open Sans', 'Roboto', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Open Sans", "Roboto", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-weight: 300;
   max-width: 69%;
   color: #f8971d;
@@ -1734,7 +1810,7 @@ ul.list-filter li .quote {
   font-size: 95%;
   color: #999;
   padding: .75em 1em .75em 1.5em;
-  font-family: 'Roboto Slab', 'Open Sans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
+  font-family: "Roboto Slab", "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif; }
 
 .list-filter h6, .list-filter h5, .list-filter h4, .list-filter h3, .list-filter h2 {
   display: inline-block; }
@@ -1742,19 +1818,19 @@ ul.list-filter li .quote {
 .article-list {
   margin-bottom: 3em;
   margin-top: -.5em; }
-  @media screen and (min-width: 68.75em)  {
+  @media screen and (min-width: 68.75em) {
     .article-list {
       padding-left: 1em; } }
 
 .quote-presentational {
-  font-family: 'Roboto Slab', 'Open Sans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Roboto Slab", "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 1.6em;
   line-height: 1.5;
   display: block;
   text-align: center;
   margin: auto;
   padding: 0; }
-  @media screen and (min-width: 56.25em)  {
+  @media screen and (min-width: 56.25em) {
     .quote-presentational {
       width: 60%; } }
 
@@ -1895,12 +1971,15 @@ blockquote.small {
 .modal label {
   cursor: pointer;
   margin-bottom: 0; }
+
 .modal label img {
   border-radius: 150px;
   display: block;
   max-width: 300px; }
+
 .modal input[type="checkbox"] {
   display: none; }
+
 .modal .btn {
   border: 1px solid #e7dec4;
   border-radius: 3px;
@@ -1919,23 +1998,25 @@ blockquote.small {
   font-size: 1em;
   margin-bottom: 1.5; }
   .modal .btn:hover:not(:disabled) {
-    box-shadow: inset 0 1px 0 0 white;
-    cursor: pointer;
     background-color: #f2efe7;
     background-image: -webkit-linear-gradient(#f2efe7, #e7dec4);
-    background-image: linear-gradient(#f2efe7, #e7dec4); }
+    background-image: linear-gradient(#f2efe7, #e7dec4);
+    box-shadow: inset 0 1px 0 0 white;
+    cursor: pointer; }
   .modal .btn:active:not(:disabled), .modal .btn:focus:not(:disabled) {
     border: 1px solid #e7dec4;
     box-shadow: inset 0 0 8px 4px #e2d8ba, inset 0 0 8px 4px #e2d8ba; }
   .modal .btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed; }
+    cursor: not-allowed;
+    opacity: 0.5; }
+
 .modal .modal-open {
   overflow: hidden; }
+
 .modal .modal-window {
-  -webkit-transition: opacity .25s ease;
-  -moz-transition: opacity .25s ease;
-  transition: opacity .25s ease;
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
   position: fixed;
   top: 0px;
   right: 0px;
@@ -1953,14 +2034,15 @@ blockquote.small {
     bottom: 0px;
     left: 0px;
     cursor: pointer; }
+
 .modal .modal-close {
   position: absolute;
   top: 1.5em;
   right: 1.5em;
   bottom: 0;
   left: 0;
-  width: 1.5em;
   height: 1.5em;
+  width: 1.5em;
   cursor: pointer;
   background: white; }
   .modal .modal-close:after, .modal .modal-close:before {
@@ -1974,8 +2056,8 @@ blockquote.small {
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
-    width: 0.15em;
     height: 1.5em;
+    width: 0.15em;
     background: #ddd;
     content: '';
     display: block;
@@ -1988,10 +2070,11 @@ blockquote.small {
     -ms-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg); }
+
 .modal .modal-inner {
-  -webkit-transition: opacity .25s ease;
-  -moz-transition: opacity .25s ease;
-  transition: opacity .25s ease;
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
   border-radius: 3px;
   background: white;
   margin: auto;
@@ -2039,9 +2122,11 @@ blockquote.small {
     margin-top: 1em; }
     .modal .modal-inner a.cta:last-child {
       padding: 0 2em; }
+
 .modal .modal-state:checked + .modal-window {
   opacity: 1;
   visibility: visible; }
+
 .modal .modal-state:checked + .modal-window .modal-inner {
   top: 0; }
 
@@ -2057,14 +2142,14 @@ header.navigation {
     margin-right: auto;
     position: relative;
     z-index: 9999; }
-    header.navigation .navigation-wrapper:after {
+    header.navigation .navigation-wrapper::after {
+      clear: both;
       content: "";
-      display: table;
-      clear: both; }
-    header.navigation .navigation-wrapper:after {
+      display: table; }
+    header.navigation .navigation-wrapper::after {
+      clear: both;
       content: "";
-      display: table;
-      clear: both; }
+      display: table; }
   header.navigation .logo {
     float: left;
     max-height: 99px;
@@ -2076,7 +2161,7 @@ header.navigation {
   header.navigation .navigation-menu-button {
     color: #00a0af;
     display: block;
-    font-family: 'Open Sans', 'Roboto', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-family: "Open Sans", "Roboto", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
     line-height: 1;
     margin: 0;
     padding: 1em;
@@ -2113,7 +2198,7 @@ header.navigation {
     padding-bottom: 2px;
     background: #fbfaf7;
     display: block;
-    font-family: 'Roboto Slab', 'Open Sans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-family: "Roboto Slab", "Open Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
     line-height: 3;
     overflow: hidden;
     text-align: right;
@@ -2133,8 +2218,8 @@ header.navigation {
       font-weight: 400; }
       @media screen and (min-width: 53.75em) {
         header.navigation ul li a {
-          padding-right: .75em;
-          padding-left: .75em; } }
+          padding-right: .5em;
+          padding-left: .5em; } }
       header.navigation ul li a:hover {
         color: #f8971d; }
   header.navigation .active-nav-item a, header.navigation .active {
@@ -2217,10 +2302,10 @@ header.navigation {
     padding-left: 0.5em;
     clear: both;
     background: #505050; }
-    header.navigation .navigation-tools:after {
+    header.navigation .navigation-tools::after {
+      clear: both;
       content: "";
-      display: table;
-      clear: both; }
+      display: table; }
     @media screen and (min-width: 53.75em) {
       header.navigation .navigation-tools {
         background: transparent;
@@ -2252,7 +2337,7 @@ header.navigation {
       position: relative; }
       header.navigation .search-bar .search-and-submit input[type=search] {
         background: white;
-        border: 1px solid #f2efe6;
+        border: 1px solid #f3efe6;
         padding: .6em .8em;
         font-size: .9em;
         font-style: italic;
@@ -2263,7 +2348,7 @@ header.navigation {
           header.navigation .search-bar .search-and-submit input[type=search] {
             width: 100%; } }
       header.navigation .search-bar .search-and-submit button[type=submit] {
-        border: 1px solid #fcfcfb;
+        border: 1px solid #dbdbdb;
         border-radius: 3px;
         box-shadow: inset 0 1px 0 0 white;
         color: #333333;
@@ -2271,8 +2356,22 @@ header.navigation {
         font-size: inherit;
         font-weight: bold;
         background-color: white;
-        background-image: -webkit-linear-gradient(#ffffff, #ffffff);
-        background-image: linear-gradient(white, white);
+        background-image: -webkit-linear-gradient(white, #e3e3e3);
+        background-image: linear-gradient(white, #e3e3e3);
+        padding: 7px 18px;
+        text-decoration: none;
+        text-shadow: 0 1px 0 white;
+        background-clip: padding-box;
+        border: 1px solid #dfd8d8;
+        border-radius: 3px;
+        box-shadow: inset 0 1px 0 0 white;
+        color: #333333;
+        display: inline-block;
+        font-size: inherit;
+        font-weight: bold;
+        background-color: white;
+        background-image: -webkit-linear-gradient(white, #e5e0e0);
+        background-image: linear-gradient(white, #e5e0e0);
         padding: 7px 18px;
         text-decoration: none;
         text-shadow: 0 1px 0 white;
@@ -2287,17 +2386,26 @@ header.navigation {
         padding: 0 15px;
         max-height: 16px; }
         header.navigation .search-bar .search-and-submit button[type=submit]:hover:not(:disabled) {
+          background-color: #f2f2f2;
+          background-image: -webkit-linear-gradient(#f2f2f2, #dbdbdb);
+          background-image: linear-gradient(#f2f2f2, #dbdbdb);
           box-shadow: inset 0 1px 0 0 white;
-          cursor: pointer;
-          background-color: white;
-          background-image: -webkit-linear-gradient(#ffffff, #fcfcfb);
-          background-image: linear-gradient(white, #fcfcfb); }
+          cursor: pointer; }
         header.navigation .search-bar .search-and-submit button[type=submit]:active:not(:disabled), header.navigation .search-bar .search-and-submit button[type=submit]:focus:not(:disabled) {
-          border: 1px solid #fcfcfb;
-          box-shadow: inset 0 0 8px 4px #f7f5f1, inset 0 0 8px 4px #f7f5f1; }
+          border: 1px solid #dbdbdb;
+          box-shadow: inset 0 0 8px 4px #d4d4d4, inset 0 0 8px 4px #d4d4d4; }
+        header.navigation .search-bar .search-and-submit button[type=submit]:hover:not(:disabled) {
+          background-color: #f2f2f2;
+          background-image: -webkit-linear-gradient(#f2f2f2, #ded8d8);
+          background-image: linear-gradient(#f2f2f2, #ded8d8);
+          box-shadow: inset 0 1px 0 0 white;
+          cursor: pointer; }
+        header.navigation .search-bar .search-and-submit button[type=submit]:active:not(:disabled), header.navigation .search-bar .search-and-submit button[type=submit]:focus:not(:disabled) {
+          border: 1px solid #dfd8d8;
+          box-shadow: inset 0 0 8px 4px #d7d1d1, inset 0 0 8px 4px #d7d1d1; }
         header.navigation .search-bar .search-and-submit button[type=submit]:disabled {
-          opacity: 0.5;
-          cursor: not-allowed; }
+          cursor: not-allowed;
+          opacity: 0.5; }
         header.navigation .search-bar .search-and-submit button[type=submit] img {
           height: 12px;
           opacity: .7; }
@@ -2399,17 +2507,17 @@ header.navigation {
         margin-bottom: .3em;
         outline: none; }
         .table-minimal tbody td button:hover:not(:disabled) {
-          box-shadow: inset 0 1px 0 0 white;
-          cursor: pointer;
           background-color: #f2efe7;
           background-image: -webkit-linear-gradient(#f2efe7, #e7dec4);
-          background-image: linear-gradient(#f2efe7, #e7dec4); }
+          background-image: linear-gradient(#f2efe7, #e7dec4);
+          box-shadow: inset 0 1px 0 0 white;
+          cursor: pointer; }
         .table-minimal tbody td button:active:not(:disabled), .table-minimal tbody td button:focus:not(:disabled) {
           border: 1px solid #e7dec4;
           box-shadow: inset 0 0 8px 4px #e2d8ba, inset 0 0 8px 4px #e2d8ba; }
         .table-minimal tbody td button:disabled {
-          opacity: 0.5;
-          cursor: not-allowed; }
+          cursor: not-allowed;
+          opacity: 0.5; }
         @media screen and (min-width: 40em) {
           .table-minimal tbody td button {
             width: auto;
@@ -2442,6 +2550,28 @@ object, embed, iframe {
   left: 0;
   width: 100%;
   height: 100%; }
+
+.search-results .divider {
+  margin: 1em 0; }
+
+.posts form {
+  margin-bottom: 2em;
+  widows: 100%; }
+  .posts form input[type='text'] {
+    display: inline-block;
+    padding: .4em .5em;
+    font-size: 1.1em;
+    width: 60%; }
+  .posts form input[type='submit'] {
+    margin-top: -5px; }
+
+.login_form input[type='text'], .login_form input[type='password'] {
+  display: inline-block;
+  padding: .4em .5em;
+  width: 50%; }
+
+.login_form input[type='submit'] {
+  margin-top: -5px; }
 
 body {
   background-color: #a2a69d; }

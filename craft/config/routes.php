@@ -19,5 +19,5 @@
  */
 
 return array(
-
+    'scheduled-maintenance' => 'static-pages/_maintenance'
 );

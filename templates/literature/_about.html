@@ -1,0 +1,79 @@
+
+<h4>
+  {% if genre | length %}{{ genre.title }}{% endif %}
+  {% include 'global/_authors-list.html' %}
+</h4>
+{% if translators | length %}
+  Translated
+    {% if originalLanguage | length %}
+      from the {{ originalLanguage.title }}
+    {% endif %}
+  by
+    {% for translator in translators %}
+      {% if translators | length == 2 %}
+        {% if loop.last and not loop.first %} and {% endif %}{{translator.title}}
+          {% else %}
+            {% if loop.last and not loop.first %} and {% endif %}{{translator.title}}{% if not loop.last %}, {% endif %}
+      {% endif %}
+    {% endfor %}
+{% endif %}
+      <hr />
+{% if entry.introduction %}
+  {{entry.introduction}}
+{% endif %}
+
+{% if graphic | length %}
+<div class="no-print">
+  <h5>Navigation</h5>
+  <p>Click the Next button to read the story.</p>
+
+   <div class="button-group">
+                   <button class="button small" id="prev">&lt;&lt;Prev </button>
+    {# <button class="button small" id="pauser" data-cycle-cmd="pause">pause</button> #}
+    {# <button class="button small" id="pauser" data-cycle-cmd="resume">resume</button> #}
+  <button class="button small" id="next"> <strong>Next&gt;&gt;</strong></button>
+  <br />
+  <div id="custom-pager"></div>
+  
+  </div>
+
+  <div id="custom-caption" class="center"></div>
+  <div class="slide-pager" style="width:90%;margin:1em auto;clear:both;"></div>
+</div>
+  {% endif %}
+
+
+
+
+
+{% if definitions | length %}
+  <hr />
+  <h5>Definitions</h5>
+  <dl>
+    {% for definition in definitions %}
+      <dt id="{{definition.title}}">{{definition.title}}</dt>
+      <dd>{{definition.introduction}}</dd>
+    {% endfor %}
+  </dl>
+{% endif %}
+
+{% for block in entry.images %}
+  {% if block.captionCredit  %}
+    <div class="caption bottom-right">image: {{ block.captionCredit }}</div>
+  {% endif %}
+{% endfor %}
+
+
+
+
+
+{% if originalPublicationInfo | length %}
+<hr />
+  <small>{{ originalPublicationInfo }}</small>
+
+{% endif %}
+
+  <br />
+  {# <button class="small no-print" style="float:right;" onclick="window.print();">Print Literature</button> #}
+
+ 
