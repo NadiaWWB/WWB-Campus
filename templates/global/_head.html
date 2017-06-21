@@ -1,3 +1,28 @@
+{% if 'about' in craft.request.path %}
+	{% set metaDescription = 'Fiction, poetry, and essays from around the world, along with contextual resources, teaching tools, and suggestions for further exploration.' %}
+{% elseif 'find' in craft.request.path %}
+	{% set metaDescription = 'Search or browse through global fiction, nonfiction, poetry, and graphic literature, on topics such as love, immigration, and growing up.' %}
+{% elseif 'educators' in craft.request.path %}
+	{% set metaDescription = 'Access materials for teaching world literature: discussion questions, assignments, connections to classical literature, and correlations with standards.' %}
+{% elseif 'literature' in craft.request.path %}
+	{% set metaDescription = 'Read the full text, along with biographies, multimedia contextual resources, teaching ideas, and suggestions for further exploration.' %}
+{% elseif 'blog' in craft.request.path %}
+	{% set metaDescription = entry.title %}
+{% elseif 'contact' in craft.request.path %}
+	{% set metaDescription = 'Send us a question, or sign up for a newsletter on global literature and education.' %}
+{% elseif 'register' in craft.request.path %}
+	{% set metaDescription = 'Complete this simple form to get access to dozens of teaching ideas, assignments, and classroom activities.' %}
+{% elseif 'unit/mexico' in craft.request.path %}
+    {% set metaDescription = 'Learn about life as an undocumented immigrant, get to know Mexico\'s indigenous cultures, and delve into the drug wars in these stories, poems, and essays.' %}
+{% elseif 'unit/china' in craft.request.path %}
+    {% set metaDescription = 'Read a story of street vendors and Shakespeare, personal accounts of Tiananmen Square and the Cultural Revolution, and an oral history of LBGTQ life in modern China.' %}
+{% elseif 'unit/egypt' in craft.request.path %}
+    {% set metaDescription = 'Meet poets and revolutionaries, Muslims and Coptic Christians; and travel to the Pyramids, a Bedouin compound, and Tahrir Square.' %}
+{% elseif 'unit/japan' in craft.request.path %}
+    {% set metaDescription = 'Experience manga, encounter the "no-face ghost," and go inside the mind of a bullied teen in this collection of stories and poems from Japan.' %}
+{% elseif 'unit/russia' in craft.request.path %}
+    {% set metaDescription = 'Find out about life in Putin\'s and Stalin\'s Russia, and read work from a Nobel Prize-winning oral historian, renowned Silver Age poet, and many others.' %}
+{% endif %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -5,9 +30,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en-us"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
+	<meta name="Description" content="{{metaDescription}}">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
