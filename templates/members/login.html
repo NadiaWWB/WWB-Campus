@@ -11,6 +11,11 @@
 
 		<p>Need an account? Register <a href="{{url('members/register')}}">here</a>.</p>
 
+		{% if errorMessage is defined %}
+        <p><strong>Sorry, the email or password you entered is not correct.</p>
+				<p>If you've forgotten your password, <a href="{{ url('members/forgot-password') }}">click here</a> to receive an email that will help you easily reset it.</strong></p>
+    {% endif %}
+
 		<form accept-charset="UTF-8" action="" method="POST" class="login_form" role="form">
 			{{ getCsrfInput() }}
 		  <input type="hidden" name="action" value="users/login">
