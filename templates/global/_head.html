@@ -7,7 +7,7 @@
 {% elseif 'literature' in craft.request.path %}
 	{% set metaDescription = 'Read the full text, along with biographies, multimedia contextual resources, teaching ideas, and suggestions for further exploration.' %}
 {% elseif 'blog' in craft.request.path %}
-	{% set metaDescription = entry.title %}
+	{% set metaDescription = entry.title|default('Get news and updates on world literature and global citizenship education.') %}
 {% elseif 'contact' in craft.request.path %}
 	{% set metaDescription = 'Send us a question, or sign up for a newsletter on global literature and education.' %}
 {% elseif 'register' in craft.request.path %}
@@ -30,7 +30,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en-us"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<meta name="Description" content="{{metaDescription|default('')}}">
+	<meta name="Description" content="{{metaDescription|default('Words Without Borders Campus connects students and educators to eye-opening contemporary literature from around the globe.')}}">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
