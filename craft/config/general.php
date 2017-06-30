@@ -18,7 +18,8 @@ return array(
 		'setPasswordSuccessPath' => 'members/login'
 	),
 	'wwb-campus-dev.us-east-1.elasticbeanstalk.com' => array(
-		'siteUrl' => 'http://wwb-campus-dev.us-east-1.elasticbeanstalk.com/'
+		'siteUrl' => 'http://wwb-campus-dev.us-east-1.elasticbeanstalk.com/',
+		'devMode' => false
 	),
 	'wwb-campus-prod.us-east-1.elasticbeanstalk.com' => array(
 		'siteUrl' => 'http://wwb-campus.org',
