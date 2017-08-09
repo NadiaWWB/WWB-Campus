@@ -1,24 +1,24 @@
 [
     {
         "name": "enshrined/svg-sanitize",
-        "version": "0.5.3.1",
-        "version_normalized": "0.5.3.1",
+        "version": "0.6.0",
+        "version_normalized": "0.6.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/pixelandtonic/svg-sanitizer.git",
-            "reference": "a392da2ace76ecb27263cb09e2163449514bcf81"
+            "url": "https://github.com/darylldoyle/svg-sanitizer.git",
+            "reference": "0c943fe5fe0acb30f4c80f3a4602c44498f95eff"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pixelandtonic/svg-sanitizer/zipball/a392da2ace76ecb27263cb09e2163449514bcf81",
-            "reference": "a392da2ace76ecb27263cb09e2163449514bcf81",
+            "url": "https://api.github.com/repos/darylldoyle/svg-sanitizer/zipball/0c943fe5fe0acb30f4c80f3a4602c44498f95eff",
+            "reference": "0c943fe5fe0acb30f4c80f3a4602c44498f95eff",
             "shasum": ""
         },
         "require-dev": {
             "codeclimate/php-test-reporter": "^0.1.2",
             "phpunit/phpunit": "^4.7"
         },
-        "time": "2017-06-09 21:45:33",
+        "time": "2017-06-11 23:08:25",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -26,6 +26,7 @@
                 "enshrined\\svgSanitize\\": "src"
             }
         },
+        "notification-url": "https://packagist.org/downloads/",
         "license": [
             "GPL-2.0+"
         ],
@@ -35,15 +36,12 @@
                 "email": "daryll@enshrined.co.uk"
             }
         ],
-        "description": "An SVG sanitizer for PHP",
-        "support": {
-            "source": "https://github.com/pixelandtonic/svg-sanitizer/tree/0.5.3.1"
-        }
+        "description": "An SVG sanitizer for PHP"
     },
     {
         "name": "symfony/event-dispatcher",
-        "version": "v2.8.22",
-        "version_normalized": "2.8.22.0",
+        "version": "v2.8.24",
+        "version_normalized": "2.8.24.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/event-dispatcher.git",
@@ -550,23 +548,23 @@
     },
     {
         "name": "yiisoft/yii",
-        "version": "1.1.19.1",
-        "version_normalized": "1.1.19.1",
+        "version": "1.1.19.3",
+        "version_normalized": "1.1.19.3",
         "source": {
             "type": "git",
             "url": "https://github.com/pixelandtonic/yii.git",
-            "reference": "c7a034eba65dc7b6768f0c5aefaeb2693cef787a"
+            "reference": "6bfb5bf7b691fb418ffee90e262c2a9ff7d9294d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pixelandtonic/yii/zipball/c7a034eba65dc7b6768f0c5aefaeb2693cef787a",
-            "reference": "c7a034eba65dc7b6768f0c5aefaeb2693cef787a",
+            "url": "https://api.github.com/repos/pixelandtonic/yii/zipball/6bfb5bf7b691fb418ffee90e262c2a9ff7d9294d",
+            "reference": "6bfb5bf7b691fb418ffee90e262c2a9ff7d9294d",
             "shasum": ""
         },
         "require": {
             "php": ">=5.1.0"
         },
-        "time": "2017-06-09 20:46:36",
+        "time": "2017-07-13 18:05:47",
         "bin": [
             "framework/yiic"
         ],
