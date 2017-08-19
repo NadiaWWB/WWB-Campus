@@ -1,7 +1,7 @@
 <?php
 namespace Craft;
 
-class PreparseField_PreparseFieldType extends BaseFieldType
+class PreparseField_PreparseFieldType extends BaseFieldType implements IPreviewableFieldType
 {
     /**
      * Fieldtype name
@@ -11,32 +11,6 @@ class PreparseField_PreparseFieldType extends BaseFieldType
     public function getName()
     {
         return Craft::t('Preparse');
-    }
-
-    /**
-     * onAfterElementSave hook
-     */
-    public function onAfterElementSave()
-    {
-        $fieldHandle = $this->model->handle;
-        $fieldTwig = $this->getSettings()->fieldTwig;
-        $elementType = $this->element->getElementType();
-        $elementTemplateName = strtolower($elementType);
-        
-        $oldPath = craft()->path->getTemplatesPath();
-        craft()->path->setTemplatesPath(craft()->path->getSiteTemplatesPath());
-        $parsedData = craft()->templates->renderString($fieldTwig, array($elementTemplateName => $this->element));
-        craft()->path->setTemplatesPath($oldPath);
-        
-        if ($this->element->getContent()->getAttribute($fieldHandle)!==$parsedData) {
-            $this->element->getContent()->setAttribute($fieldHandle, $parsedData);
-            $success = craft()->elements->saveElement($this->element);
-            
-            if (!$success) {
-                PreparseFieldPlugin::log('Couldn’t save element with id "' . $element->id . '" and preparse field "' . $fieldHandle . '"',
-                  LogLevel::Error);
-            }
-        }
     }
 
     /**
@@ -54,13 +28,13 @@ class PreparseField_PreparseFieldType extends BaseFieldType
           'id' => $namespaceInputId,
           'name' => $name,
           'value' => $value,
-          'settings' => $this->getSettings() 
+          'settings' => $this->getSettings()
         ));
     }
 
     /**
-     * Validates 
-     * 
+     * Validates
+     *
      * Always returns 'true'
      *
      * @param array $value
@@ -73,7 +47,7 @@ class PreparseField_PreparseFieldType extends BaseFieldType
 
     /**
      * Define fieldtype settings
-     * 
+     *
      * @return array
      */
     protected function defineSettings()
@@ -81,29 +55,55 @@ class PreparseField_PreparseFieldType extends BaseFieldType
         return array(
           'fieldTwig' => array(AttributeType::String, 'default' => ''),
           'showField' => array(AttributeType::Bool, 'default' => false),
+          'columnType' => array(AttributeType::String),
+          'decimals' => array(AttributeType::Number, 'default' => 0),
+          'parseBeforeSave' => array(AttributeType::Bool, 'default' => false),
+          'parseOnMove' => array(AttributeType::Bool, 'default' => false),
+          'allowSelect' => array(AttributeType::Bool, 'default' => false),
         );
     }
 
     /**
      * Render settings html
-     * 
+     *
      * @return mixed
      */
     public function getSettingsHtml()
     {
+        $columns = array(
+          ColumnType::Text => Craft::t('Text (stores about 64K)'),
+          ColumnType::MediumText => Craft::t('MediumText (stores about 4GB)'),
+          'number' => Craft::t('Number'),
+        );
+
         return craft()->templates->render('preparsefield/settings', array(
-          'settings' => $this->getSettings()
+          'settings' => $this->getSettings(),
+          'columns' => $columns,
+          'existing' => !empty($this->model->id),
         ));
     }
-    
+
     /**
      * Define database column
      *
-     * @return AttributeType::String
+     * @return mixed
      */
     public function defineContentAttribute()
     {
-        return array(AttributeType::String, 'column' => ColumnType::Text);
-    }
+        $settings = $this->getSettings();
 
+        // It hasn't always been a settings, so default to Text if it's not set.
+        if (!$settings->getAttribute('columnType')) {
+            return array(AttributeType::String, 'column' => ColumnType::Text);
+        }
+
+        if ($settings->columnType === 'number') {
+            $attribute = ModelHelper::getNumberAttributeConfig(null, null, $settings->decimals);
+            $attribute['default'] = 0;
+
+            return $attribute;
+        }
+
+        return array(AttributeType::String, 'column' => $settings->columnType);
+    }
 }
